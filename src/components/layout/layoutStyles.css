@@ -1,0 +1,104 @@
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+html { font-size: 14px; }
+
+@media (min-width: 768px) {
+    html { font-size: 16px; }
+    .container-height {
+        height: 100% !important;
+        min-height: 600px !important;
+    }
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.DayPickerInput input{
+    height: 50px;
+    border: 1px solid #dde6ef;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fbfdff;
+    font-size: 15px;
+    color: #445461;
+    font-weight: 400;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    width: 100%;
+    margin-bottom: 0;
+}
+.DayPickerInput{
+    display: inline !important;
+}
+.layoutBody {
+    padding: 0px 20px;
+    margin: 30px auto 0;
+    /* min-width: 600px; */
+    /* background: #f4f4f4; */
+}
+.sideBar {
+    background: #fff;
+    padding: 15px;
+    margin: 15px 0 15px 15px;
+    flex: 0 0 246px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.08);
+}
+.layoutResults {
+    background: #fff;
+    flex: auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.08);
+    min-height: 600px;
+    padding: 10px
+}
+.width-remove{
+    min-width: 100% !important;
+}
+.filter-sidebar .ur-detail-wrap {
+    padding: 7px;
+}
+.sidebar-widgets {
+    margin-bottom: 10px;
+}
+
+nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu li a{
+    text-align: left !important;
+}
+
+
+nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu>li>a {
+    color: #ffffff;
+}
+
+nav.navbar.bootsnav li.dropdown ul.dropdown-menu {
+    background-color: #35434e;
+}
+
+.dropdown-menu>li>a:hover{
+    background-image: linear-gradient(to bottom,#7f837f 0,#168c60 100%);
+}
+
+.dropdown-menu>li>a:focus{
+    background-image: linear-gradient(to bottom,#168c60 0,#168c60 100%);
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+    background-color: #168c60
+}
+
+.navMenuRightTitle{
+    color: rgba(255, 255, 255, 1)
+}
+.navMenuRightTitle:hover{
+    color: #168c60;
+}
+.mobile-nav{
+ display: flex;
+}
+.mobile-nav ul{
+    flex: 1;
+    line-height: 4;
+    list-style: none;
+}

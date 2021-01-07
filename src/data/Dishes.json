@@ -1,0 +1,227 @@
+[
+    {
+        "eventId": 1,
+        "veg": [
+            {
+                "foodId": 1,
+                "name": "Masal Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "Parota",
+                "imgUrl": "butter.jpg",
+                "Price": 200,
+                "active": false
+            },
+            {
+                "foodId": 3,
+                "name": "plain Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 4,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 5,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 6,
+                "name": "plain Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 7,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 8,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 9,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 10,
+                "name": "set dosa Dosa",
+                "imgUrl":  "masaldosa.jpg",
+                "Price": 120,
+                "active": false
+            }
+
+        ],
+        "nonveg": [
+            {
+                "foodId": 1,
+                "name": "Chicken Biriyani",
+                "imgUrl": "chickenbiriyani.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "kabab",
+                "imgUrl": "chicken65.jpg",
+                "Price": 420,
+                "active": false
+            },
+            {
+                "foodId": 3,
+                "name": "Chicken65",
+                "imgUrl": "chicken65.jpg",
+                "Price": 420,
+                "active": false
+            },
+            {
+                "foodId": 4,
+                "name": "chickencurry",
+                "imgUrl": "chicken65.jpg",
+                "Price": 420,
+                "active": false
+            }
+        ],
+        "dessert": [
+            {
+                "foodId": 1,
+                "name": "IceCreams",
+                "imgUrl": "ice.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "cakes",
+                "imgUrl": "dessert.jpg",
+                "Price": 420,
+                "active": false
+            }
+        ]
+    },
+    {
+        "eventId": 2,
+        "veg": [
+            {
+                "foodId": 1,
+                "name": "thali",
+                "imgUrl": "Thali.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "Chitranna",
+                "imgUrl": "chitranna.jpg",
+                "Price": 200,
+                "active": false
+            }
+        ],
+        "nonveg": [
+            {
+                "foodId": 1,
+                "name": "Chilli Chicken",
+                "imgUrl": "chilli.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "chicken65",
+                "imgUrl": "chicken65.jpg",
+                "Price": 420,
+                "active": false
+            }
+        ],
+        "dessert": [
+            {
+                "foodId": 1,
+                "name": "Jamun",
+                "imgUrl": "jamun.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "juice",
+                "imgUrl": "juice.jpg",
+                "Price": 420,
+                "active": false
+            }
+        ]
+    },
+    {
+        "eventId": 3,
+        "veg": [
+            {
+                "foodId": 1,
+                "name": "idli",
+                "imgUrl": "idli.jpg",
+                "Price": 120,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "veg biriyani",
+                "imgUrl": "pulav.jpg",
+                "Price": 200,
+                "active": false
+            }
+        ],
+        "nonveg": [
+            {
+                "foodId": 1,
+                "name": "pulav",
+                "imgUrl": "chickenbiriyani.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "chicke gravy",
+                "imgUrl": "curry.jpg",
+                "Price": 420,
+                "active": false
+            }
+        ],
+        "dessert": [
+            {
+                "foodId": 1,
+                "name": "Samosa",
+                "imgUrl": "Meals.jpg",
+                "Price": 320,
+                "active": false
+            },
+            {
+                "foodId": 2,
+                "name": "upma",
+                "imgUrl": "upma.jpg",
+                "Price": 420,
+                "active": false
+            }
+           
+        ]
+    }
+]

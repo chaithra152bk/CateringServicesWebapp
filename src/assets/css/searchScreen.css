@@ -1,0 +1,137 @@
+
+.search-box-wrapper{
+    /* padding: 0px 20px; */
+}
+.job-list-wrapper .recruiter-jobList{
+    padding-top: 0px !important;
+    margin-bottom: -15px;
+}
+
+.job-list-wrapper .recruiter-jobList .container{
+    width: 100% !important;
+}
+.list {
+    list-style: none;
+    padding: 0;
+}
+.input-toggle {
+    padding: 1px 0;
+    position: relative;
+}
+.ur-detail-wrap-header {
+    padding: 10px 0 0px 0;
+    margin-bottom: 0.1em;
+}
+ul.advance-list li {
+    display: block;
+    list-style: none;
+    padding: 1px 0;
+    border-bottom: 0px dashed #dfe3e8;
+}
+.sidebar-widgets .ur-detail-wrap{
+    padding: 0 1em 0 1em;
+}
+
+.accordionContentOpen{
+    margin-bottom: 10px;
+}
+
+.job-list-wrapper .container{
+    padding: 0px 8px
+}
+.pagination-wrapper{
+    margin-top: -11px;
+    padding: 10px 0px;
+}
+
+@media (min-width: 768px)
+{
+    .intro-page-wrapper{
+        line-height: 5;
+    }    
+    .pagination-wrapper{
+        float: right;
+    }
+    .intro-page-wrapper.search-page-count {
+        line-height: 22px !important;
+        margin-top: 29px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 992px)
+{
+    .pagination-wrapper{
+        padding-right: 10px;
+    }
+    .intro-page-wrapper.search-page-count {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 993px){
+    .bpagination-padd{
+        padding-right: 0px ;
+    }
+}
+@media (min-width: 1024px){
+    .intro-page-wrapper.search-page-count {
+        line-height: 22px !important;
+        margin-top: 29px !important;
+        font-size: 13px !important;
+    }
+}
+
+
+@media (max-width: 600px){
+    .layoutBody{
+        padding: 0px;
+    }
+    .layoutResults{
+        padding: 0px
+    }
+    .job-list-wrapper .mtminus25{
+        padding: 0px !important;
+    }
+    
+    .job-list-wrapper article{
+        padding: 0px !important;
+    }
+    
+    .job-list-wrapper .extra-mrg{
+        padding: 0px !important;
+    }
+    .search-box-wrapper{
+        margin: 0px 20px
+    }
+    .recruiter-jobList .container{
+        padding: 0px;
+    }
+    .pagination-wrapper{
+        padding: 10px 20px 10px 20px !important;
+    }
+    .bpagination-padd{
+        padding:0px ;
+    }
+}
+
+.canidate-list-wrapper section.full-detail.candidate-jobList{
+    padding: 0px !important;
+}
+
+.jobAppliedListWrapper{
+    width: 100%;
+    padding:3px
+}
+
+.genderWrapper{
+    display: flex;
+}
+.switchWrapper{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.canidate-list-wrapper .jobAppliedListWrapper{
+    padding: 0px !important
+}

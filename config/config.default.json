@@ -1,0 +1,6 @@
+{
+  "example": {
+    "port": 3005,
+    "baseUrl": "https://api.tau.green/v1/"
+  }
+}

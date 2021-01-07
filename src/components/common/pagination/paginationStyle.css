@@ -1,0 +1,44 @@
+.pagination > li > a, .pagination > li > span {
+    /* width: 40px; */
+    /* height: 50; */
+    text-align: center;
+    padding: .5rem .75rem ;
+}
+
+.pagination-icon > a, .pagination-icon > span {
+    font-size: 26px;
+    line-height: 50;
+    padding: 0px 10px 0px 10px !important;
+}
+
+@media (max-width: 767px)
+{
+    .intro-page-wrapper{
+        text-align: center;
+    }
+    .pagination{
+        margin-top: 10px !important;
+        padding-left: 5px
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        /* width: 24px;
+        font-size: 12px;
+        text-align: center;
+        padding: 0px 8px 0px 8px !important; */
+        /* width: 35px; */
+        height: 33px;
+        /* height: 29px; */
+        font-size: 11px;
+        text-align: center;
+        line-height: 1.5;
+        /* line-height: 1; */
+        padding: 8px 8px 8px 8px !important;
+    }
+
+    .pagination-icon > a, .pagination-icon > span {
+        font-size: 20px !important;
+        line-height: 0.7 !important;
+        font-weight: bold;
+    }
+}

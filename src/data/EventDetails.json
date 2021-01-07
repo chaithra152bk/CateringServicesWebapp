@@ -1,0 +1,21 @@
+{
+	"events": [{
+			"eventId":1,
+			"eventname": "Birthday",
+			"active": false,
+			"dishes": ["Vegiterian", "Non-Veg", "dessert"]
+		},
+		{
+			"eventId":2,
+			"eventname": "Marriage",
+			"active": false,
+			"dishes": ["Vegiterian", "Non-Veg", "dessert"]
+		},
+		{
+			"eventId":3,
+			"eventname": "Party Hall",
+			"active": false,
+			"dishes": ["Vegiterian", "Non-Veg"]
+		}
+	]
+}
