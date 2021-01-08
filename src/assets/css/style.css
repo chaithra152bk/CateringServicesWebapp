@@ -146,12 +146,14 @@ Fonts
   border-top-right-radius: 4px;
 
 }
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item{
-  padding: 5px -13px !important;
+
+.lineContainer hr {
+  border: "0.5px solid black" !important;
+  margin-bottom: 2 !important;
+  margin-top: 2 !important;
 }
 .active, .submenuContainer:hover {
-
- background-color:gray;
+background-color:gray;
   color: white;
  
 }
@@ -10710,9 +10712,9 @@ textarea.form-control.text-area-summary {
 }
 
 .custom-modal {
-  width: 35%;
+  width: 29.5%;
   height: auto;
-  padding: 1% 2% 0% 2%;
+  padding: 0px 0px 0px 0px;
 }
 
 .modal .full-detail {

@@ -128,84 +128,77 @@ class OrderPage extends React.Component {
     }
     orderDetailPopup = () => {
         let Quantity = 12
-        let sum = this.orderList.map(o => o.Price).reduce((a, c) => { return a + c*Quantity });
+        let sum = this.orderList.map(o => o.Price).reduce((a, c) => { return a + c });
 
         return (
             <div style={{ margin: "20px" }}>
                 <div className="jobDetail-container-popupView">
-                    <div className="row" style={{ backgroundColor: 'lightgray', padding: 10, marginBottom: 20, marginTop: 10 }}>
-                        <div className="col-md-offset-4 col-md-8">
+                    <div className="row" style={{ backgroundColor: 'lightgray', padding: '20px', marginBottom: 20, marginTop: 10, marginRight: '-19px', marginLeft: '-19px' }}>
+                        <div className="col-md-offset-4 col-md-8 col-xs-12" >
                             <div style={{ fontSize: '25px', fontWeight: 'bold', color: 'black' }}>Order Details</div>
                         </div>
                     </div>
-                    <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
-                        <div className="col-md-5 col-sm-6">
-                            <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Date: 12/05/2021</div>
+                    <div>
+                        <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
+                            <div className="col-md-5 col-sm-6 col-xs-12">
+                                <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Date: 12/05/2021</div>
+                            </div>
+                            <div className="col-md-7 col-sm-6 col-xs-12">
+                                <div style={{ float: 'right', marginRight: '60px', fontSize: '16px', fontWeight: 'bold', color: 'black' }}>No. of Persons:  {Quantity}</div>
+                            </div>
+
+                            <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
+                            <div className="col-md-5 col-sm-6 col-xs-12" >
+                                <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Location: Bangalore</div>
+                            </div>
+                            <div className="col-md-7 col-sm-6 col-xs-12" >
+                                <div style={{ float: 'right', fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Contact No.: 9606345827</div>
+                            </div>
+
+                            <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
+
                         </div>
-                        <div className="col-md-7 col-sm-6">
-                            <div style={{ float: 'right', marginRight: '60px', fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Number of Persons:  {Quantity}</div>
+                        <div className="col-md-6 col-sm-6 col-xs-6" >
+                            <div style={{ fontSize: '18px', fontWeight: 'bold', color: 'black' }}>Items</div>
+
                         </div>
-                        {/* </div> */}
+                        <div className="col-md-6 col-sm-6 col-xs-6" >
+                            <div style={{ float: 'right', marginRight: '20px', fontSize: '18px', fontWeight: 'bold', color: 'black' }}>Price</div>
+
+                        </div>
                         <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
-                        {/* <div className="row"> */}
-                        <div className="col-md-5 col-sm-6" >
-                            <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Location : Bangalore</div>
-                        </div>
-                        <div className="col-md-7 col-sm-6" >
-                            <div style={{ float: 'right', fontSize: '16px', fontWeight: 'bold', color: 'black' }}>Contact Number : 9606345827</div>
-                        </div>
-                        {/* </div> */}
-
-                        <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
-                        {/* <div className="row"> */}
-
-                    </div>
-                    {/* <hr /> */}
-                    {/* <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}> */}
-                    <div className="col-md-6 col-sm-6" >
-                        <div style={{ fontSize: '18px', fontWeight: 'bold', color: 'black' }}>Items</div>
-
-                    </div>
-                    <div className="col-md-6 col-sm-6" >
-                        <div style={{ float: 'right', marginRight: '20px', fontSize: '18px', fontWeight: 'bold', color: 'black' }}>Price</div>
-
-                    </div>
-                    {/* </div> */}
-                    <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
-                    {/* <div style={{height:"300px", overflowY:'auto'}}> */}
-                    <div style={{ height: "200px", overflowY: 'auto' }}>
-                        {this.orderList.map((value, j) => {
-                            return (
-                                <div >
-                                    <div key={j} className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
-                                        <div className="col-md-6 col-sm-6">
-                                            <div style={{ fontSize: '15px', fontWeight: 'bold', color: 'black' }}>{value.name}</div>
-                                        </div>
-                                        <div className="col-md-6 col-sm-6" >
-                                            <div style={{ float: 'right', fontSize: '15px', fontWeight: 'bold', color: 'black' }}> {'Rs. '}{value.Price}</div>
+                        <div style={{ height: "220px", overflowY: 'auto' }}>
+                            {this.orderList.map((value, j) => {
+                                return (
+                                    <div >
+                                        <div key={j} className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
+                                            <div className="col-md-6 col-sm-6 col-xs-6">
+                                                <div style={{ fontSize: '15px', fontWeight: 'bold', color: 'black' }}>{value.name}</div>
+                                            </div>
+                                            <div className="col-md-6 col-sm-6 col-xs-6" >
+                                                <div style={{ float: 'right', fontSize: '15px', fontWeight: 'bold', color: 'black' }}> {'Rs. '}{value.Price}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    {/* </div> */}
-                    <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
-                    <div className="row" style={{ marginRight: '5px' }}>
-                        <div className="col-md-6 col-sm-6" >
-                            {/* <h5>Total: </h5> */}
+                                )
+                            })}
                         </div>
-                        <div className="col-md-6 col-sm-6" >
-                            <div style={{ float: 'right', fontSize: '16px', fontWeight: 'bold', color: 'black' }}> Total: {'Rs. '}{sum} </div>
+                        <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
+                        <div className="row" style={{ marginRight: '5px' }}>
+                            <div className="col-md-6 col-sm-6 col-xs-6" >
+                            </div>
+                            <div className="col-md-6 col-sm-6 col-xs-6" >
+                                <div style={{ float: 'right', fontSize: '16px', fontWeight: 'bold', color: 'black' }}> Total: {'Rs. '}{sum * Quantity} </div>
+                            </div>
                         </div>
-                    </div>
-                    <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
-                    <div className="row" style={{ marginLeft: '15px', marginBottom: '5px', marginTop: "25px" }}>
-                        <div className="col-md-6">
-                            <button className="resetButton" onClick={() => this.resetOrderChange()}>Reset order</button>
-                        </div>
-                        <div className="col-md-6" >
-                            <button className="submitButton" onClick={() => this.confirmOrderChange()}>Confirm order</button>
+                        <hr style={{ border: "0.5px solid black", marginBottom: 2, marginTop: 2 }} />
+                        <div className="row" style={{ marginLeft: '15px', marginBottom: '5px', marginTop: "25px" }}>
+                            <div className="col-md-6 col-xs-12">
+                                <button className="resetButton" onClick={() => this.resetOrderChange()}>Reset order</button>
+                            </div>
+                            <div className="col-md-6 col-xs-12" >
+                                <button className="submitButton" onClick={() => this.confirmOrderChange()}>Confirm order</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -214,7 +207,6 @@ class OrderPage extends React.Component {
     }
     render() {
         const tabarray = this.state.tabs
-        console.log(" this.props.modalREF----------", this.props.modalRef)
         return (
 
             <div>
