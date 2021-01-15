@@ -201,7 +201,7 @@ export default class NavMenu extends React.PureComponent {
 						</button>}
 						<div className="navbar-header">
 							<div className="navbar-brand">
-								<NavLink>
+								<NavLink to={'/'}>
 									<h3 style={{color:'white'}}>Catering Services</h3>
 									{/* <img src={logo.header_logo} className="logo logo-scrolled" alt="" /> */}
 								</NavLink>

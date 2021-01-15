@@ -1,227 +1,223 @@
-[
-    {
-        "eventId": 1,
-        "veg": [
-            {
-                "foodId": 1,
-                "name": "Masal Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "Parota",
-                "imgUrl": "butter.jpg",
-                "Price": 200,
-                "active": false
-            },
-            {
-                "foodId": 3,
-                "name": "plain Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 4,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 5,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 6,
-                "name": "plain Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 7,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 8,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 9,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 10,
-                "name": "set dosa Dosa",
-                "imgUrl":  "masaldosa.jpg",
-                "Price": 120,
-                "active": false
-            }
-
-        ],
-        "nonveg": [
-            {
-                "foodId": 1,
-                "name": "Chicken Biriyani",
-                "imgUrl": "chickenbiriyani.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "kabab",
-                "imgUrl": "chicken65.jpg",
-                "Price": 420,
-                "active": false
-            },
-            {
-                "foodId": 3,
-                "name": "Chicken65",
-                "imgUrl": "chicken65.jpg",
-                "Price": 420,
-                "active": false
-            },
-            {
-                "foodId": 4,
-                "name": "chickencurry",
-                "imgUrl": "chicken65.jpg",
-                "Price": 420,
-                "active": false
-            }
-        ],
-        "dessert": [
-            {
-                "foodId": 1,
-                "name": "IceCreams",
-                "imgUrl": "ice.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "cakes",
-                "imgUrl": "dessert.jpg",
-                "Price": 420,
-                "active": false
-            }
-        ]
-    },
-    {
-        "eventId": 2,
-        "veg": [
-            {
-                "foodId": 1,
-                "name": "thali",
-                "imgUrl": "Thali.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "Chitranna",
-                "imgUrl": "chitranna.jpg",
-                "Price": 200,
-                "active": false
-            }
-        ],
-        "nonveg": [
-            {
-                "foodId": 1,
-                "name": "Chilli Chicken",
-                "imgUrl": "chilli.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "chicken65",
-                "imgUrl": "chicken65.jpg",
-                "Price": 420,
-                "active": false
-            }
-        ],
-        "dessert": [
-            {
-                "foodId": 1,
-                "name": "Jamun",
-                "imgUrl": "jamun.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "juice",
-                "imgUrl": "juice.jpg",
-                "Price": 420,
-                "active": false
-            }
-        ]
-    },
-    {
-        "eventId": 3,
-        "veg": [
-            {
-                "foodId": 1,
-                "name": "idli",
-                "imgUrl": "idli.jpg",
-                "Price": 120,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "veg biriyani",
-                "imgUrl": "pulav.jpg",
-                "Price": 200,
-                "active": false
-            }
-        ],
-        "nonveg": [
-            {
-                "foodId": 1,
-                "name": "pulav",
-                "imgUrl": "chickenbiriyani.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "chicke gravy",
-                "imgUrl": "curry.jpg",
-                "Price": 420,
-                "active": false
-            }
-        ],
-        "dessert": [
-            {
-                "foodId": 1,
-                "name": "Samosa",
-                "imgUrl": "Meals.jpg",
-                "Price": 320,
-                "active": false
-            },
-            {
-                "foodId": 2,
-                "name": "upma",
-                "imgUrl": "upma.jpg",
-                "Price": 420,
-                "active": false
-            }
-           
-        ]
-    }
-]
+{
+    "userId": 1,
+    "userName": "private",
+    "eventType": [
+        {
+            "eventTypeId": 3,
+            "eventName": "special events",
+            "subEventTypes": []
+        },
+        {
+            "eventTypeId": 2,
+            "eventName": "social events",
+            "subEventTypes": [
+                {
+                    "subEventId": 8,
+                    "subEventName": "wedding",
+                    "foodCategories": []
+                },
+                {
+                    "subEventId": 7,
+                    "subEventName": "birthday",
+                    "foodCategories": [
+                        {
+                            "foodCategoryId": 1,
+                            "foodCategoryName": "veg",
+                            "foodSubCategories": [
+                                {
+                                    "subFoodCategoryId": 3,
+                                    "subFoodCategoryName": "starters",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 1,
+                                    "subFoodCategoryName": "main course",
+                                    "dishes": [
+                                        {
+                                            "dishId": 1,
+                                            "dishName": "veg birinayni",
+                                            "price": 120,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 4,
+                                            "dishName": "jeera rice",
+                                            "price": 65,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 2,
+                                            "dishName": "ghee rice",
+                                            "price": 80,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 3,
+                                            "dishName": "white rice",
+                                            "price": 40,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "subFoodCategoryId": 2,
+                                    "subFoodCategoryName": "chinese",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 4,
+                                    "subFoodCategoryName": "curries",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 5,
+                                    "subFoodCategoryName": "egg",
+                                    "dishes": []
+                                }
+                            ]
+                        },
+                        {
+                            "foodCategoryId": 2,
+                            "foodCategoryName": "non veg",
+                            "foodSubCategories": [
+                                {
+                                    "subFoodCategoryId": 8,
+                                    "subFoodCategoryName": "starters",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 6,
+                                    "subFoodCategoryName": "main course",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 9,
+                                    "subFoodCategoryName": "curries",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 7,
+                                    "subFoodCategoryName": "chinese",
+                                    "dishes": []
+                                }
+                            ]
+                        },
+                        {
+                            "foodCategoryId": 3,
+                            "foodCategoryName": "desserts",
+                            "foodSubCategories": []
+                        },
+                        {
+                            "foodCategoryId": 4,
+                            "foodCategoryName": "common items",
+                            "foodSubCategories": []
+                        }
+                    ]
+                },
+                {
+                    "subEventId": 9,
+                    "subEventName": "house warming",
+                    "foodCategories": [
+                        {
+                            "foodCategoryId": 1,
+                            "foodCategoryName": "veg",
+                            "foodSubCategories": [
+                                {
+                                    "subFoodCategoryId": 3,
+                                    "subFoodCategoryName": "starters",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 1,
+                                    "subFoodCategoryName": "main course",
+                                    "dishes": [
+                                        {
+                                            "dishId": 1,
+                                            "dishName": "veg birinayni",
+                                            "price": 120,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 4,
+                                            "dishName": "jeera rice",
+                                            "price": 65,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 2,
+                                            "dishName": "ghee rice",
+                                            "price": 80,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 3,
+                                            "dishName": "white rice",
+                                            "price": 40,
+                                            "active": false,
+                                            "imageName": "Biriyani.jpg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "subFoodCategoryId": 2,
+                                    "subFoodCategoryName": "chinese",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 4,
+                                    "subFoodCategoryName": "curries",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 5,
+                                    "subFoodCategoryName": "egg",
+                                    "dishes": []
+                                }
+                            ]
+                        },
+                        {
+                            "foodCategoryId": 2,
+                            "foodCategoryName": "non veg",
+                            "foodSubCategories": [
+                                {
+                                    "subFoodCategoryId": 8,
+                                    "subFoodCategoryName": "starters",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 6,
+                                    "subFoodCategoryName": "main course",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 9,
+                                    "subFoodCategoryName": "curries",
+                                    "dishes": []
+                                },
+                                {
+                                    "subFoodCategoryId": 7,
+                                    "subFoodCategoryName": "chinese",
+                                    "dishes": []
+                                }
+                            ]
+                        }
+                        
+                        
+                    ]
+                },
+                {
+                    "subEventId": 10,
+                    "subEventName": "gathering",
+                    "foodCategories": []
+                }
+            ]
+        }
+    ]
+}

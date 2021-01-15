@@ -18,10 +18,9 @@ class OrderContainer extends React.Component {
     
 
     render() {
-    
         return (
             <div>               
-                <CommonModal ref={(ref) => this.modalRef = ref} />                
+                   <CommonModal ref={(ref) => this.modalRef = ref} />             
                 <OrderPage modalRef={this.modalRef} DishesData={DishesData} EventData={EventData} {...this.props} />
                
             </div>

@@ -5,6 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import constant from "../../shared/constant";
 import { Button } from '../common/button/Button';
+import CutomForm1 from './form1';
 
 
 
@@ -25,10 +26,11 @@ class HomePage extends React.Component {
 		return (
 
 			<div>
-				<div className="clearfix"></div>
-				<div className="backgroundPage">
-
-				</div>
+				<div className="clearfix">
+				{/* <div className="backgroundPage"> */}
+					<CutomForm1 />
+					</div>
+				{/* </div> */}
 			</div>
 		);
 	}
