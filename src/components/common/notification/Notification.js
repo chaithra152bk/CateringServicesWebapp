@@ -26,7 +26,7 @@ class Notification extends React.Component {
 
     render() {
         return (
-            <ToastContainer toastClassName="toast" autoClose={3000} closeOnClick={true} position="top-center" />
+            <ToastContainer toastClassName="toast" autoClose={3000} closeOnClick={true} hideProgressBar={true} position="bottom-right" />
         );
     }
 }

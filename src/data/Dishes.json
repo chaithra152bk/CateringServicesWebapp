@@ -37,29 +37,25 @@
                                             "dishId": 1,
                                             "dishName": "veg birinayni",
                                             "price": 120,
-                                            "active": false,
                                             "imageName": "Biriyani.jpg"
                                         },
                                         {
                                             "dishId": 4,
                                             "dishName": "jeera rice",
                                             "price": 65,
-                                            "active": false,
-                                            "imageName": "Biriyani.jpg"
+                                            "imageName": "pulav.jpg"
                                         },
                                         {
                                             "dishId": 2,
                                             "dishName": "ghee rice",
                                             "price": 80,
-                                            "active": false,
-                                            "imageName": "Biriyani.jpg"
+                                            "imageName": "chitranna.jpg"
                                         },
                                         {
                                             "dishId": 3,
                                             "dishName": "white rice",
                                             "price": 40,
-                                            "active": false,
-                                            "imageName": "Biriyani.jpg"
+                                            "imageName": "curd.jpg"
                                         }
                                     ]
                                 },
@@ -87,7 +83,32 @@
                                 {
                                     "subFoodCategoryId": 8,
                                     "subFoodCategoryName": "starters",
-                                    "dishes": []
+                                    "dishes": [
+                                        {
+                                            "dishId": 7,
+                                            "dishName": "Birinayni",
+                                            "price": 120,
+                                            "imageName": "Biriyani.jpg"
+                                        },
+                                        {
+                                            "dishId": 8,
+                                            "dishName": "Friedrice",
+                                            "price": 65,
+                                            "imageName": "curry.jpg"
+                                        },
+                                        {
+                                            "dishId": 9,
+                                            "dishName": "chitranna",
+                                            "price": 80,
+                                            "imageName": "upma.jpg"
+                                        },
+                                        {
+                                            "dishId": 10,
+                                            "dishName": "Pulav rice",
+                                            "price": 40,
+                                            "imageName": "Thali.jpg"
+                                        }
+                                    ]
                                 },
                                 {
                                     "subFoodCategoryId": 6,
@@ -139,28 +160,24 @@
                                             "dishId": 1,
                                             "dishName": "veg birinayni",
                                             "price": 120,
-                                            "active": false,
                                             "imageName": "Biriyani.jpg"
                                         },
                                         {
                                             "dishId": 4,
                                             "dishName": "jeera rice",
                                             "price": 65,
-                                            "active": false,
-                                            "imageName": "Biriyani.jpg"
+                                             "imageName": "Biriyani.jpg"
                                         },
                                         {
                                             "dishId": 2,
                                             "dishName": "ghee rice",
                                             "price": 80,
-                                            "active": false,
                                             "imageName": "Biriyani.jpg"
                                         },
                                         {
                                             "dishId": 3,
                                             "dishName": "white rice",
                                             "price": 40,
-                                            "active": false,
                                             "imageName": "Biriyani.jpg"
                                         }
                                     ]

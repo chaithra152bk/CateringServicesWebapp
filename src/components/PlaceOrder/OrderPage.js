@@ -5,7 +5,10 @@ import '.././layout/SidebarMenu.css';
 import DatePicker from "react-datepicker";
 import CommonModal from "../common/modal/Modal";
 import "react-datepicker/dist/react-datepicker.css";
+import Notification from '../common/notification/Notification';
+import constant from '../../shared/constant';
 
+const toast = new Notification()
 
 class OrderPage extends React.Component {
     constructor(props) {
@@ -29,10 +32,12 @@ class OrderPage extends React.Component {
             subTabs: [],
             activeIndex: null,
             activeCategory: null,
-            selectActive: null,
+            selectActive: false,
             foodIndex: null,
             eventStatus: false,
-            categoryStatus: false
+            categoryStatus: false,
+            tickStatus: false,
+            dishName: ''
         }
 
         this.modalRef = null;
@@ -49,42 +54,86 @@ class OrderPage extends React.Component {
         });
     }
 
-    onchangeEvent = async (id, name, categoryId, index) => {
-        this.setState({ eventId: await id })
+    onchangeEvent = async (id, name, index) => {
+        // console.log("events", id, name, index)
+        let eventId = 7;
+        this.setState({ eventId: await eventId })
         this.setState({ subFoodCategoryName: await name.subFoodCategoryName })
         this.setState({ subFoodCategoryId: await name.subFoodCategoryId })
-        this.setState({ foodCategoryId: await categoryId })
+        this.setState({ foodCategoryId: await id })
         this.setState({ navColor: true })
-        this.setState({foodIndex: index})
-    }
-
-    
-
-    handleTabClick(eventId, index) {
-        this.setState({ activeIndex: index })
-        this.setState({eventStatus : !this.state.eventStatus})
-    }
-
-    handleCategoryClick(category, newIndex)  {
-        this.setState({ activeCategory: newIndex })
-        this.setState({categoryStatus : !this.state.categoryStatus})
-    }
-
-    cardChangeEvent = async (value) => {
-        this.setState({ DishId: await value.dishId })
-
-        if (value.dishId == this.state.DishId) {
-            if (value.active == true) {
-                this.orderList.pop(value)
-                value.active = false
-            } else {
-                this.orderList.push(value)
-                value.active = true;
-            }
+        this.setState({ foodIndex: index })
+        let dishesList = name.dishes
+        if (dishesList.length > 0) {
+            console.log("")
         } else {
-            value.active = false;
+            toast.show("their is no dishes for this food",
+                constant.error
+            );
         }
-        this.setState({ activeColor: !this.state.activeColor })
+    }
+
+
+
+    handleTabClick(tab, index) {
+        let newtab = tab.foodSubCategories
+        this.setState({ activeIndex: index })
+        // this.setState({ eventStatus: !this.state.eventStatus })
+        if (this.state.eventStatus == true && this.state.activeIndex == index) {
+            this.setState({ eventStatus: false })
+        } else {
+            this.setState({ eventStatus: true })
+        }
+
+        if (newtab.length > 0) {
+            console.log("");
+        }
+        else {
+            toast.show("their is no sub category found",
+                constant.error
+            );
+        }
+
+
+
+    }
+
+    handleCategoryClick(category, newIndex) {
+        let food = category.foodSubCategories
+        this.setState({ activeCategory: newIndex })
+        // this.setState({ categoryStatus: !this.state.categoryStatus })
+        if (this.state.categoryStatus == true && this.state.activeCategory == newIndex) {
+            this.setState({ categoryStatus: false })
+        } else {
+            this.setState({ categoryStatus: true })
+        }
+
+        if (food.length > 0) {
+            console.log("");
+        }
+        else {
+            toast.show("their is no sub food category found",
+                constant.error
+            );
+        }
+
+    }
+
+    cardChangeEvent = async (value, foodCategoryId, subFoodCategoryId) => {
+        this.setState({ DishId: await value.dishId })
+        this.setState({ dishName: await value.dishName })
+        if (value.dishId == this.state.DishId && this.state.foodCategoryId == foodCategoryId && this.state.subFoodCategoryId == subFoodCategoryId) {
+            if (this.orderList.findIndex(x => x.dishId == value.dishId) == -1) {
+                this.orderList.push(await value)
+                this.setState({ selectActive: true })
+            } else {
+                this.orderList.pop(await value)
+                this.setState({ selectActive: false })
+            }
+        }
+         else {
+            this.setState({ selectActive: true })          
+        }
     }
 
     orderSubmit = () => {
@@ -95,18 +144,24 @@ class OrderPage extends React.Component {
     }
 
     confirmOrderChange = () => {
-        this.confirmRef.props.onHide({
-            body: <section style={{ margin: 5 }}>
-                <div className="jobDetail-container-popupView">
-                    <div className="row" style={{ alignItems: 'center', margin: '10px' }}>
-                        <div className="col-md-12">
-                            <h4>Order Confirmed</h4>
-                        </div>
-                    </div>
-                </div>
-            </section>,
-            header: ''
-        })
+        this.modalRef.props.onHide();
+
+        toast.show("Order Confirmed",
+        constant.success
+    );
+
+        // this.confirmRef.props.onHide({
+        //     body: <section style={{ margin: 5 }}>
+        //         <div className="jobDetail-container-popupView">
+        //             <div className="row" style={{ alignItems: 'center', margin: '10px' }}>
+        //                 <div className="col-md-12">
+        //                     <h4>Order Confirmed</h4>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </section>,
+        //     header: ''
+        // })
     }
 
     resetOrderChange = () => {
@@ -114,6 +169,10 @@ class OrderPage extends React.Component {
             this.orderList = []
             this.modalRef.props.onHide();
             window.location.reload()
+            toast.show("Order  was reset",
+            constant.error
+        );
+    
         }
 
     }
@@ -200,10 +259,13 @@ class OrderPage extends React.Component {
         )
     }
 
-    
+
     render() {
         let tabarray = this.props.DishesData.eventType[1];
-        let eventArray = tabarray.subEventTypes;
+        let eventName =  tabarray.subEventTypes[1].subEventName
+        let eventArray = tabarray.subEventTypes[1].foodCategories;
+        // console.log("eventarray", eventArray)
+        let catering = null
 
         return (
 
@@ -213,35 +275,25 @@ class OrderPage extends React.Component {
                         <div className="list-group panel">
 
                             <div>
-                                <h4 className="list-group-item list-group-item-success" style={{ fontWeight: 'bold', fontSize: '20px', color: 'black' }}>Event Types</h4>
+                                <h4 className="list-group-item list-group-item-success" style={{ fontWeight: 'bold', fontSize: '20px', color: 'black' }}>Food Categories</h4>
                                 {
                                     eventArray.map((tab, index) => {
+                                        // console.log("tab------", tab)
                                         return (
 
                                             <div className="tab" key={index}>
-                                                <div className="list-group-item list-group-item-success" onClick={() => {
-                                                    this.handleTabClick(tab.subEventId, index)
+                                                <div className="list-group-item list-group-item-success" style={{ cursor: 'pointer' }} onClick={() => {
+                                                    this.handleTabClick(tab, index)
                                                 }}>
-                                                    <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{tab.subEventName}</span>
-                                                    <i className={this.state.activeIndex === index   ? "fa fa-chevron-up" : "fa fa-chevron-down"} style={{ float: 'right' }}></i>
+                                                    <span style={{ fontSize: '18px', textTransform: 'capitalize', fontWeight: 'bold' }}>{tab.foodCategoryName}</span>
+                                                    <i className={this.state.activeIndex === index && this.state.eventStatus ? "fa fa-chevron-up" : "fa fa-chevron-down"} style={{ float: 'right' }}></i>
                                                 </div>
-                                                { tab.foodCategories ? tab.foodCategories.map((item, newIndex) => {
-                                                    return (<div key={newIndex} className={this.state.activeIndex === index  ? "content show" : "content hide"}>
+                                                { tab.foodSubCategories ? tab.foodSubCategories.map((item, newIndex) => {
+                                                    return (<div key={newIndex} className={this.state.activeIndex === index && this.state.eventStatus ? "content show" : "content hide"}>
 
-                                                        <div className="submenuContainer" onClick={() => {
-                                                            this.handleCategoryClick(item, newIndex)
-                                                        }}
-                                                        >  {item.foodCategoryName}
-                                                            <i className={this.state.activeCategory === newIndex ? "fa fa-chevron-up" : "fa fa-chevron-down"} style={{ float: 'right', color: 'black' }}></i>
+                                                        <div className={this.state.foodIndex == newIndex && this.state.subFoodCategoryId == item.subFoodCategoryId ? "activeSubmenuContainer" : "submenuContainer"} onClick={() => this.onchangeEvent(tab.foodCategoryId, item, newIndex)}
+                                                        >  {item.subFoodCategoryName}
                                                         </div>
-                                                        {item.foodSubCategories ?item.foodSubCategories.map((data, j) => {
-                                                            return (<div key={j} className={this.state.activeCategory === newIndex ? "content show" : "content hide"}>
-
-                                                                <div className={ this.state.foodIndex === j ? "tickContainer": "categoryContainer"}
-                                                                    onClick={() => this.onchangeEvent(tab.subEventId, data, item.foodCategoryId, j)}>  <a>{data.subFoodCategoryName}</a>
-                                                                </div></div>)
-                                                        }) : null}
-
                                                     </div>)
                                                 }) : null}
                                             </div>
@@ -254,11 +306,11 @@ class OrderPage extends React.Component {
                 </div>
 
 
-                <section style={{ height: '50px' }}>
+                <section className="eventContainer">
                     <div className="row">
                         <div className="col-md-offset-2 col-md-2 col-md-offset-4 col-sm-8">
                             <div>
-                                <span className="subTextNew">Event Type: Birthday</span>
+                                <span className="subTextNew">Event Type: {eventName}</span>
                             </div>
                         </div>
                         <div className=" col-md-2 col-sm-12">
@@ -271,6 +323,10 @@ class OrderPage extends React.Component {
                                 value={this.state.startDate}
                                 selected={this.state.startDate}
                                 onChange={(date) => this.handleChange(date)}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={12}
+                                dateFormat="dd/MM/yyyy  HH:mm"                                
                             /></span>
                         </div>
                         <div>
@@ -280,45 +336,49 @@ class OrderPage extends React.Component {
                 <section className="full-detail" style={{ height: '530px', overflowY: 'auto' }}>
                     {this.state.DishesName != '' && this.state.eventId != null ?
                         <div>
-                            {eventArray.map((value, k) => {
+                            {eventArray.map((food, k) => {
+
                                 return (
-                                    this.state.eventId == value.subEventId && value.foodCategories.map((food, l) => {
+                                    this.state.foodCategoryId == food.foodCategoryId && food.foodSubCategories.map((tree, m) => {
                                         return (
-                                            this.state.foodCategoryId == food.foodCategoryId && food.foodSubCategories.map((tree, m) => {
+                                            this.state.subFoodCategoryName == tree.subFoodCategoryName && tree.dishes && tree.dishes.map((sub, n) => {
+
                                                 return (
-                                                    this.state.subFoodCategoryId == tree.subFoodCategoryId && tree.dishes && tree.dishes.map((sub, n) => {
-                                                        return (
-                                                            <div className="boxContainer" key={n}>
-                                                                <div className='col-md-3 col-sm-12' >
-                                                                    <div className="paid-candidate-container mrg-10 random" onClick={() => this.cardChangeEvent(sub)}>
-                                                                        {sub.active == false ? null : <i className="fa fa-check" style={{ position: 'absolute', marginLeft: '75px', fontSize: 22, color: 'blue', backgroundColor: 'aliceblue' }}></i>}
-                                                                        <div className="paid-candidate-box-random">
-                                                                            <div className="newstyle">
-                                                                                <div className="paid-candidate-box-thumb">
-                                                                                    <img src={require(`../../assets/images/Foods/${sub.imageName}`)} className="random-img" alt="" />
-                                                                                </div>
-                                                                                <div className="paid-candidate-box-detail">
-                                                                                    <h4>{sub.dishName}</h4>
-                                                                                    <span className="desination"></span>
-                                                                                </div>
-                                                                            </div>
+                                                    <div className="boxContainer" key={n} onClick={(event) => this.cardChangeEvent(sub, food.foodCategoryId, tree.subFoodCategoryId)}>
+                                                        <div className='col-md-3 col-sm-12' >
+                                                            <div className="paid-candidate-container mrg-10 random" >
+
+                                                                {
+                                                                    this.orderList.findIndex(x => x.dishId == sub.dishId) > -1 ?
+                                                                        <i className="fa fa-check" style={{ position: 'absolute', marginLeft: '75px', fontSize: 22, color: 'blue', backgroundColor: 'aliceblue' }}>
+
+                                                                        </i> : null}
+                                                                <div className="paid-candidate-box-random">
+                                                                    <div className="newstyle">
+                                                                        <div className="paid-candidate-box-thumb">
+                                                                            <img src={require(`../../assets/images/Foods/${sub.imageName}`)} className="random-img" alt="" />
                                                                         </div>
-                                                                        <p className="btn btn-paid-candidate bt-1" >&#8377;  {sub.price}</p>
+                                                                        <div className="paid-candidate-box-detail">
+                                                                            <h4>{sub.dishName}</h4>
+                                                                            <span className="desination"></span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <p className="btn btn-paid-candidate bt-1" >&#8377;  {sub.price}</p>
                                                             </div>
+                                                        </div>
+                                                    </div>
 
-                                                        )
-                                                    })
                                                 )
                                             })
                                         )
                                     })
 
+
                                 )
                             })}
 
-                          
+
                         </div> : <div className="full-detail">
                             <div className="background">
                                 <p className="bg-text">Select Event type</p>

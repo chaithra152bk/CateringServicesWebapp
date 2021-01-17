@@ -68,10 +68,10 @@ class CutomForm1 extends React.Component {
         return (
             <div style={{ marginTop: 60 }}>
                 <Row xs={1} md={1}>
-                    <Col md={8} sm={0}>
+                    <Col md={7} sm={0}>
                         <img src={require(`../../assets/images/buffet.jpg`)} style={{ width: '100%', height: '50%' }} alt="" />
                     </Col>
-                    <Col md={4} sm={12} style={{ marginLeft: '0px', marginRight: '0px', marginTop: '15px' }}>
+                    <Col md={5} sm={12} style={{ marginLeft: '0px', marginRight: '0px', marginTop: '15px' }}>
                         <Form horizontal>
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
@@ -99,7 +99,7 @@ class CutomForm1 extends React.Component {
                             </FormGroup>
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} md={2}  >
-                                    <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>Event Address1:</span></Col>
+                                    <span className="oldlabelContainer">Event Address1:</span></Col>
                                 <Col md={10}>
                                     <FormControl as="textarea" name="clientlocation" placeholder="LocationName, street, Area" />
                                 </Col>
@@ -107,14 +107,14 @@ class CutomForm1 extends React.Component {
 
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
-                                    <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>Event Date:</span>
+                                    <span className="oldlabelContainer">Event Date:</span>
                                 </Col>
                                 <Col sm="10">
                                     <FormControl type="date" name="clientdate" placeholder="Event Date" />                </Col>
                             </FormGroup>    
                             <FormGroup controlId="formHorizontalEmail" style={{ marginTop: '-10px', marginBottom: '1px' }}>
                                 <Col componentClass={ControlLabel} md={4} style={{ marginLeft: '-27px' }}>
-                                    <span style={{ paddingRight: '50px' }}>User Type: </span>
+                                    <span style={{ paddingRight: '80px' }}>User Type: </span>
                                 </Col>
                                 <Col md={4}>
                                     <FormGroup controlId="formGridEmail">
@@ -154,10 +154,13 @@ class CutomForm1 extends React.Component {
 
                             <FormGroup as={Row} controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
-                                    City:
+                                <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>SubEvent Type:</span>
               </Col>
                                 <Col sm="10">
-                                    <FormControl name="clientcity" placeholder="Client city" />
+                                <FormControl componentClass="select" placeholder="select">
+                                        {this.state.eventArray.map(({ value, label }, index) => <option value={value} >{label}</option>)}
+                                    </FormControl>
+
                                 </Col>
                             </FormGroup>
 
