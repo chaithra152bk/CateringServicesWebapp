@@ -133,6 +133,9 @@ Fonts
 @import url("https://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700");
 
 /*---------- Loader -----------*/
+.popUpContainer{
+  margin: 0 19px 0 19px !important;
+}
 .labelContainer{
   white-space: nowrap;
   margin-left: -5px !important;
@@ -143,7 +146,7 @@ Fonts
 }
 
 section.eventContainer{
-  height: 50px; 
+  /* height: 50px !important;  */
   border-bottom:  1px solid black;
 }
 @media only screen and (max-width: 992px) {
@@ -200,7 +203,7 @@ section.eventContainer{
 }
 .orderRightText {
   float: right;
-  margin-right: 60px;
+  margin-right: 55px;
   font-size: 16px;
   font-weight: bold;
   color: black;
@@ -219,6 +222,7 @@ section.eventContainer{
 }
 .contactText {
   float: right;
+  margin-right: -5px !important;
   font-size: 16px;
   font-weight: bold;
   color: black;
@@ -254,7 +258,7 @@ section.eventContainer{
   padding-right: 10px;
   background-color: gray;
   padding: 2% 10% 2% 10% !important;
-  color: black;
+  color: white;
   font-size: 16px;
   border: 1px solid #ddd;
   font-weight: bold;
@@ -6538,7 +6542,13 @@ Tab Page Style Settings
 
 @media only screen and (max-width: 990px) {
   section.eventContainer{
-    padding: 1em 1em 1em 1em;
+    padding: 1em 2em 1em 10em !important;
+    height: none !important;
+  }
+  .custom-modal.modal-dialog {
+    width: 50%;
+    height: auto;
+    padding: 10px 10px 10px 10px;
   }
   section.full-detail {
     padding: 5em 1em 3em 9em !important;
@@ -11639,6 +11649,11 @@ section.full-detail.full-details-container-education {
   box-shadow: none;
 }
 @media (max-width: 767px) {
+  .custom-modal.modal-dialog {
+    width: 90% !important;
+    height: auto;
+    padding: 0px 0px 0px 0px;
+  }
   section.full-detail.recruiter-jobList {
     padding-top: 7em !important;
   }
@@ -11794,7 +11809,7 @@ section.full-detail.full-details-container-education {
     color: #fff;
     text-transform: capitalize;
     min-width: 220px;
-    margin: 9px auto;
+    margin: 9px 0px auto;
     padding: 12px 0;
     box-shadow: 0px 0px 12px 1px rgba(22, 140, 96, 0.4);
     color: #ffffff;

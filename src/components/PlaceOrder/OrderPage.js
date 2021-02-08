@@ -7,6 +7,7 @@ import CommonModal from "../common/modal/Modal";
 import "react-datepicker/dist/react-datepicker.css";
 import Notification from '../common/notification/Notification';
 import constant from '../../shared/constant';
+import * as moment from "moment";
 
 const toast = new Notification()
 
@@ -55,7 +56,6 @@ class OrderPage extends React.Component {
     }
 
     onchangeEvent = async (id, name, index) => {
-        // console.log("events", id, name, index)
         let eventId = 7;
         this.setState({ eventId: await eventId })
         this.setState({ subFoodCategoryName: await name.subFoodCategoryName })
@@ -78,7 +78,6 @@ class OrderPage extends React.Component {
     handleTabClick(tab, index) {
         let newtab = tab.foodSubCategories
         this.setState({ activeIndex: index })
-        // this.setState({ eventStatus: !this.state.eventStatus })
         if (this.state.eventStatus == true && this.state.activeIndex == index) {
             this.setState({ eventStatus: false })
         } else {
@@ -119,10 +118,14 @@ class OrderPage extends React.Component {
 
     }
 
-    cardChangeEvent = async (value, foodCategoryId, subFoodCategoryId) => {
+    cardChangeEvent = async (value, foodCategoryId, subFoodCategoryId, foodCategoryName, subFoodCategoryName) => {
         this.setState({ DishId: await value.dishId })
         this.setState({ dishName: await value.dishName })
         if (value.dishId == this.state.DishId && this.state.foodCategoryId == foodCategoryId && this.state.subFoodCategoryId == subFoodCategoryId) {
+            value['foodCategoryName'] = foodCategoryName;
+            value['subFoodCategoryName'] = subFoodCategoryName;
+            value['foodCategoryId'] = foodCategoryId;
+            value['subFoodCategoryId'] = subFoodCategoryId;
             if (this.orderList.findIndex(x => x.dishId == value.dishId) == -1) {
                 this.orderList.push(await value)
                 this.setState({ selectActive: true })
@@ -131,37 +134,36 @@ class OrderPage extends React.Component {
                 this.setState({ selectActive: false })
             }
         }
-         else {
-            this.setState({ selectActive: true })          
+        else {
+            this.setState({ selectActive: true })
         }
     }
 
     orderSubmit = () => {
         this.modalRef.props.onHide({
-            body: this.orderDetailPopup(),
-            header: ''
+            body: this.orderDetailPopup(this.state.startDate),
+            header: '',
         })
     }
 
     confirmOrderChange = () => {
         this.modalRef.props.onHide();
-
+        let orderDetails = {};
+        orderDetails['eventDate'] = this.state.startDate;
+        orderDetails['eventLocation'] = "Bangalore";
+        orderDetails['pinCode'] = 435434;
+        orderDetails['name'] = "test_name";
+        orderDetails['eventType'] = "Social Event";
+        orderDetails['subEventType'] = "Birthday";
+        orderDetails['items'] = this.orderList;
+        orderDetails['numberOfPeople'] = 12;
+        orderDetails['totalPrice'] = 1234;
+        orderDetails['mobileNumber'] = 1234567890;
+        orderDetails['emailId'] = "test_order@test.com";
+        orderDetails['address'] = "order person's address";
         toast.show("Order Confirmed",
-        constant.success
-    );
-
-        // this.confirmRef.props.onHide({
-        //     body: <section style={{ margin: 5 }}>
-        //         <div className="jobDetail-container-popupView">
-        //             <div className="row" style={{ alignItems: 'center', margin: '10px' }}>
-        //                 <div className="col-md-12">
-        //                     <h4>Order Confirmed</h4>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </section>,
-        //     header: ''
-        // })
+            constant.success
+        );
     }
 
     resetOrderChange = () => {
@@ -170,16 +172,15 @@ class OrderPage extends React.Component {
             this.modalRef.props.onHide();
             window.location.reload()
             toast.show("Order  was reset",
-            constant.error
-        );
-    
+                constant.error
+            );
+
         }
 
     }
-    orderDetailPopup = () => {
+    orderDetailPopup = (startDate) => {
         let Quantity = 12
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
-
         return (
             <div style={{ margin: "20px" }}>
                 <div className="jobDetail-container-popupView">
@@ -190,18 +191,21 @@ class OrderPage extends React.Component {
                     </div>
                     <div>
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
-                            <div className="col-md-5 col-sm-6 col-xs-12">
-                                <div className="orderLeftText">Date: 12/05/2021</div>
+                            <div className="col-md-6 col-sm-12 col-xs-12">
+                                <div className="orderLeftText">Date: { moment(startDate).format("D/M/YYYY hh:mm")}</div>
                             </div>
-                            <div className="col-md-7 col-sm-6 col-xs-12">
-                                <div className="orderRightText">No. of Persons:  {Quantity}</div>
+                            <div className="col-md-6 col-sm-12 col-xs-12">
+                                <div className="orderRightText">No.of Persons:  {Quantity}</div>
                             </div>
 
                             <hr />
-                            <div className="col-md-5 col-sm-6 col-xs-12" >
+                            </div>
+                            <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
+
+                            <div className="col-md-6 col-sm-12 col-xs-12" >
                                 <div className="orderLeftText">Location: Bangalore</div>
                             </div>
-                            <div className="col-md-7 col-sm-6 col-xs-12" >
+                            <div className="col-md-6 col-sm-12 col-xs-12" >
                                 <div className="contactText">Contact No.: 9606345827</div>
                             </div>
 
@@ -262,9 +266,8 @@ class OrderPage extends React.Component {
 
     render() {
         let tabarray = this.props.DishesData.eventType[1];
-        let eventName =  tabarray.subEventTypes[1].subEventName
+        let eventName = tabarray.subEventTypes[1].subEventName
         let eventArray = tabarray.subEventTypes[1].foodCategories;
-        // console.log("eventarray", eventArray)
         let catering = null
 
         return (
@@ -326,7 +329,7 @@ class OrderPage extends React.Component {
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={12}
-                                dateFormat="dd/MM/yyyy  HH:mm"                                
+                                dateFormat="dd/MM/yyyy  HH:mm"
                             /></span>
                         </div>
                         <div>
@@ -344,7 +347,7 @@ class OrderPage extends React.Component {
                                             this.state.subFoodCategoryName == tree.subFoodCategoryName && tree.dishes && tree.dishes.map((sub, n) => {
 
                                                 return (
-                                                    <div className="boxContainer" key={n} onClick={(event) => this.cardChangeEvent(sub, food.foodCategoryId, tree.subFoodCategoryId)}>
+                                                    <div className="boxContainer" key={n} onClick={(event) => this.cardChangeEvent(sub, food.foodCategoryId,tree.subFoodCategoryId,food.foodCategoryName, tree.subFoodCategoryName)}>
                                                         <div className='col-md-3 col-sm-12' >
                                                             <div className="paid-candidate-container mrg-10 random" >
 
@@ -381,7 +384,7 @@ class OrderPage extends React.Component {
 
                         </div> : <div className="full-detail">
                             <div className="background">
-                                <p className="bg-text">Select Event type</p>
+                                <p className="bg-text">Select Food </p>
 
                             </div>
                         </div>
