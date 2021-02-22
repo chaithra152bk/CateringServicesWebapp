@@ -4,66 +4,106 @@ import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import history from './history';
+import eventData from '../../data/Dishes.json';
+import { NavLink } from 'react-router-dom';
 
 
-// import 'bootstrap/dist/css/bootstrap.css';
-
-// const indoptions = [
-//   { value: 'birthday', label: 'birthday' },
-//   { value: 'marriage', label: 'marriage' },
-//   { value: 'housewarming', label: 'House Warming' }
-// ];
-
-// const orgoptions = [
-//   { value: 'foodpack', label: 'Food Pack' },
-//   { value: 'Annual Events', label: 'Annual Events' }
-// ];
-
-// var options = [];
-// options = indoptions;
 
 class CutomForm1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             options: null,
-            eventArray: []
-
+            eventArray: [],
+            subEventArray: [],
+            userName: '',
+            email: '',
+            contactNumber: null,
+            eventAddress: '',
+            eventDate: new Date(),
+            userType: null,
+            pinCode: null,
+            eventType: eventData.eventType[0].eventTypeId || null,
+            eventName: eventData.eventType[0].eventName || '',
+            subEventType: null,
+            subEventName: ''
         };
-        this.indoptions = [
-            { value: 'birthday', label: 'birthday' },
-            { value: 'marriage', label: 'marriage' },
-            { value: 'housewarming', label: 'House Warming' }
-        ],
-            this.orgoptions = [
-                { value: 'foodpack', label: 'Food Pack' },
-                { value: 'Annual Events', label: 'Annual Events' }
-            ];
-
+        this.eventFilterArray = eventData.eventType[0]
+        this.indoptions = eventData.eventType
     }
 
-    componentDidUpdate() {
-        // this.handleChange();
+
+
+    eventTypeChange = (event) => {
+        let eventId = event.target.value
+        let arrayIndex = this.state.eventArray.findIndex(value => value.eventTypeId == eventId)
+        let filterArray = this.state.eventArray.filter(value => value.eventTypeId == eventId)
+        filterArray.map((item) => {
+            this.setState({ eventType: item.eventTypeId })
+            this.setState({ eventName: item.eventName })
+
+        })
+        if (arrayIndex > -1) {
+            this.setState({ subEventArray: this.state.eventArray[arrayIndex].subEventTypes })
+            // this.setState({ subEventType: this.state.subEventArray[0].subEventId })
+            // this.setState({ subEventName: this.state.subEventArray[0].subEventName })
+
+        }
+        else {
+
+        }
     }
 
-    handleOptionChange = (event) => {
-        //  alert('ahahaha');
-        // this.setState({ eventArray: indoptions })
+    subEventTypeChange = (event) => {
+        let subEventId = event.target.value
+        let arraySub = this.state.subEventArray.findIndex(value => value.subEventId == subEventId)
+        let subArray = this.state.subEventArray.filter(value => value.subEventId == subEventId)
+        subArray.map((item) => {
+            this.setState({ subEventType: item.subEventId })
+            this.setState({ subEventName: item.subEventName })
 
+        })
     }
 
-    handleChange = (value) => {
-        // alert("event");
-        console.log('handle change called', value);
-        if (value == 1) {
-            this.setState({ eventArray: this.indoptions })
+    onUserNameChange = (event) => {
+        this.setState({ userName: event.target.value })
+    }
+
+    onEmailChange = (event) => {
+        this.setState({ email: event.target.value })
+    }
+
+    onContactNumberChange = (event) => {
+        this.setState({ contactNumber: event.target.value })
+    }
+
+    onEventAddressChange = (event) => {
+        this.setState({ eventAddress: event.target.value })
+    }
+
+    onEventDateChange = (event) => {
+        this.setState({ eventDate: event.target.value })
+    }
+
+    onPincodeChange = (event) => {
+        this.setState({ pinCode: event.target.value })
+    }
+
+    handleChange = async (value) => {
+        if (value === 1) {
+            this.setState({ eventArray: await eventData.eventType })
         } else {
             this.setState({ eventArray: this.orgoptions })
         }
+
+        this.setState({ userType: value })
     }
+
+
+
     render() {
         const params = { data: { fname: 'john', lname: 'doe' } };
+        let userName = 'chaithra'
 
         return (
             <div style={{ marginTop: 60 }}>
@@ -78,7 +118,9 @@ class CutomForm1 extends React.Component {
                                     Name:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl name="clientname" placeholder="Client Name" type="text" />
+                                    <FormControl name="clientname" placeholder="Client Name" type="text" onChange={(event) => this.onUserNameChange(event)}
+
+                                    />
                                 </Col>
                             </FormGroup>
                             <FormGroup controlId="formHorizontalEmail">
@@ -86,7 +128,7 @@ class CutomForm1 extends React.Component {
                                     Email:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl name="clientemail" placeholder="asd@gmail.com" />
+                                    <FormControl name="clientemail" placeholder="asd@gmail.com" type="email" onChange={(event) => this.onEmailChange(event)} />
                                 </Col>
                             </FormGroup>
                             <FormGroup controlId="formHorizontalEmail">
@@ -94,14 +136,14 @@ class CutomForm1 extends React.Component {
                                     Phone:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl name="clientphone" placeholder="Client Phone Number" />
+                                    <FormControl name="clientphone" placeholder="Client Phone Number" type='number' onChange={(event) => this.onContactNumberChange(event)} />
                                 </Col>
                             </FormGroup>
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} md={2}  >
-                                    <span className="oldlabelContainer">Event Address1:</span></Col>
+                                    <span className="oldlabelContainer">Event Address:</span></Col>
                                 <Col md={10}>
-                                    <FormControl as="textarea" name="clientlocation" placeholder="LocationName, street, Area" />
+                                    <FormControl as="textarea" name="clientlocation" placeholder="LocationName, street, Area" type="text" onChange={(event) => this.onEventAddressChange(event)} />
                                 </Col>
                             </FormGroup>
 
@@ -110,8 +152,8 @@ class CutomForm1 extends React.Component {
                                     <span className="oldlabelContainer">Event Date:</span>
                                 </Col>
                                 <Col sm="10">
-                                    <FormControl type="date" name="clientdate" placeholder="Event Date" />                </Col>
-                            </FormGroup>    
+                                    <FormControl type="date" name="clientdate" placeholder="Event Date" type="date" onChange={(event) => this.onEventDateChange(event)} />                </Col>
+                            </FormGroup>
                             <FormGroup controlId="formHorizontalEmail" style={{ marginTop: '-10px', marginBottom: '1px' }}>
                                 <Col componentClass={ControlLabel} md={4} style={{ marginLeft: '-27px' }}>
                                     <span style={{ paddingRight: '80px' }}>User Type: </span>
@@ -120,7 +162,7 @@ class CutomForm1 extends React.Component {
                                     <FormGroup controlId="formGridEmail">
                                         <span style={{ color: 'gray', fontWeight: 'bold' }}>
                                             <input type="radio" name="site_name" style={{ marginLeft: '-45px', marginTop: 10 }}
-                                                onChange={(e) => { this.handleChange(1) }}
+                                                onChange={(e) => { this.handleChange(eventData.userId) }}
                                             />    Individual</span>
 
                                     </FormGroup>
@@ -130,7 +172,7 @@ class CutomForm1 extends React.Component {
                                     <FormGroup controlId="formGridEmail">
                                         <span style={{ color: 'gray', fontWeight: 'bold' }}>  <input type="radio" name="site_name" style={{ marginLeft: '-80px', marginTop: 10, color: 'black', fontWeight: 'bold' }}
 
-                                            onChange={(e) => { this.handleChange(2) }}
+                                            onChange={(e) => { this.handleChange(eventData.userId) }}
                                         />   Organization</span>
                                     </FormGroup>
                                 </Col>
@@ -144,8 +186,8 @@ class CutomForm1 extends React.Component {
 
 
 
-                                    <FormControl componentClass="select" placeholder="select">
-                                        {this.state.eventArray.map(({ value, label }, index) => <option value={value} >{label}</option>)}
+                                    <FormControl componentClass="select" placeholder="select" onChange={(event) => this.eventTypeChange(event)}>
+                                        {this.state.eventArray && this.state.eventArray.map((value, index) => <option key={index} value={value.eventTypeId} >{value.eventName}</option>)}
                                     </FormControl>
 
                                 </Col>
@@ -154,11 +196,11 @@ class CutomForm1 extends React.Component {
 
                             <FormGroup as={Row} controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
-                                <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>SubEvent Type:</span>
-              </Col>
+                                    <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>SubEvent Type:</span>
+                                </Col>
                                 <Col sm="10">
-                                <FormControl componentClass="select" placeholder="select">
-                                        {this.state.eventArray.map(({ value, label }, index) => <option value={value} >{label}</option>)}
+                                    <FormControl componentClass="select" placeholder="select" onChange={(event) => this.subEventTypeChange(event)}>
+                                        {this.state.subEventArray && this.state.subEventArray.map((subevents, i) => <option key={i} value={subevents.subEventId} >{subevents.subEventName}</option>)}
                                     </FormControl>
 
                                 </Col>
@@ -169,22 +211,28 @@ class CutomForm1 extends React.Component {
                                     Pincode:
               </Col>
                                 <Col sm="10">
-                                    <FormControl name="clientpincode" placeholder="Client PinCode" />
+                                    <FormControl name="clientpincode" placeholder="Client PinCode" type="number" onChange={(event) => this.onPincodeChange(event)} />
                                 </Col>
                             </FormGroup>
                             <FormGroup>
-                                <Button bsStyle="success" type="submit" className='btn btn-success'
+                                <NavLink bsStyle="success" type="submit" className='btn btn-success'
                                     style={{ marginLeft: '165px', borderRadius: '10px' }}
-                                    onClick={() => history.push('/orders',{            userName : this.userName
-                                    }
-                                    )}>
+                                    to={{
+                                        pathname: '/orders', state: {
+                                            userName: this.state.userName, contactNumber: this.state.contactNumber, email: this.state.email,
+                                            eventAddress: this.state.eventAddress, eventDate: this.state.eventDate, userType: this.state.userType,
+                                            eventType: this.state.eventType, eventName: this.state.eventName, subEventTypeId: this.state.subEventType,
+                                            subEventName: this.state.subEventName, pinCode: this.state.pinCode
+                                        }
+                                    }}
+                                >
                                     Proceed to Place Order
-        </Button>
+        </NavLink>
                             </FormGroup>
                         </Form>
                     </Col>
                 </Row>
-            </div>
+            </div >
 
         );
     }

@@ -23,7 +23,7 @@ const Main = (props) => {
         <Layout {...props}>
             <Switch>
                 {/* For working in development mode, uncoment the below route and comment the route of redirect */}
-                <PrivateRestrictRecruiterRoute exact path="/" {...props} component={HomePage} />
+                <Route exact path="/" {...props} component={HomePage} />
 
                 {/* <Route exact path="/" component={() => {
                     window.location.href = constant.HOME_PAGE_MAIN_WEBSITE;
@@ -33,7 +33,7 @@ const Main = (props) => {
 
 
 
-                <PrivateCandidateRoute path='/orders' {...props} component={orderContainer} />
+                <Route path='/orders' {...props} component={orderContainer} />
 
               
 

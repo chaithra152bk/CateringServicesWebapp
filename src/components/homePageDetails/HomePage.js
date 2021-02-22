@@ -24,16 +24,16 @@ class HomePage extends React.Component {
 
 
 		return (
-
-			<div>
-				<div className="clearfix">
-				{/* <div className="backgroundPage"> */}
-					<CutomForm1 />
-					</div>
-				{/* </div> */}
+			<div className="clearfix">
+				<CutomForm1  {...this.props} />
 			</div>
-		);
+		)
 	}
 }
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+	candidate: state.candidate
+});
+
+export default connect(mapStateToProps)(HomePage);
+

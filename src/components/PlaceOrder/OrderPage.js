@@ -16,6 +16,7 @@ class OrderPage extends React.Component {
         super(props);
 
         this.state = {
+            clientName: this.props.history.location.state.userName || '',
             error: null,
             isLoaded: false,
             items: [],
@@ -40,7 +41,7 @@ class OrderPage extends React.Component {
             tickStatus: false,
             dishName: ''
         }
-
+        console.log("this.props.history.location.state0", this.props.history.location.state)
         this.modalRef = null;
         this.confirmRef = null;
         this.handleTabClick = this.handleTabClick.bind(this);
@@ -151,16 +152,16 @@ class OrderPage extends React.Component {
         let orderDetails = {};
         orderDetails['eventDate'] = this.state.startDate;
         orderDetails['eventLocation'] = "Bangalore";
-        orderDetails['pinCode'] = 435434;
-        orderDetails['name'] = "test_name";
+        orderDetails['pinCode'] = this.props.history.location.state.pinCode;
+        orderDetails['name'] = this.props.history.location.state.userName;
         orderDetails['eventType'] = "Social Event";
         orderDetails['subEventType'] = "Birthday";
         orderDetails['items'] = this.orderList;
         orderDetails['numberOfPeople'] = 12;
         orderDetails['totalPrice'] = 1234;
-        orderDetails['mobileNumber'] = 1234567890;
-        orderDetails['emailId'] = "test_order@test.com";
-        orderDetails['address'] = "order person's address";
+        orderDetails['mobileNumber'] = this.props.history.location.state.contactNumber;
+        orderDetails['emailId'] = this.props.history.location.state.email;
+        orderDetails['address'] = this.props.history.location.state.eventAddress;
         toast.show("Order Confirmed",
             constant.success
         );
@@ -192,15 +193,17 @@ class OrderPage extends React.Component {
                     <div>
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <div className="orderLeftText">Date: { moment(startDate).format("D/M/YYYY hh:mm")}</div>
+                                <div className="orderLeftText">Date: {moment(startDate).format("D/M/YYYY hh:mm")}</div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <div className="orderRightText">No.of Persons:  {Quantity}</div>
+                                <div className="orderRightText">
+                                    No.of Persons:  {Quantity}
+                                </div>
                             </div>
 
                             <hr />
-                            </div>
-                            <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
+                        </div>
+                        <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
 
                             <div className="col-md-6 col-sm-12 col-xs-12" >
                                 <div className="orderLeftText">Location: Bangalore</div>
@@ -269,6 +272,7 @@ class OrderPage extends React.Component {
         let eventName = tabarray.subEventTypes[1].subEventName
         let eventArray = tabarray.subEventTypes[1].foodCategories;
         let catering = null
+        const data = this.props.history.location.state
 
         return (
 
@@ -347,7 +351,7 @@ class OrderPage extends React.Component {
                                             this.state.subFoodCategoryName == tree.subFoodCategoryName && tree.dishes && tree.dishes.map((sub, n) => {
 
                                                 return (
-                                                    <div className="boxContainer" key={n} onClick={(event) => this.cardChangeEvent(sub, food.foodCategoryId,tree.subFoodCategoryId,food.foodCategoryName, tree.subFoodCategoryName)}>
+                                                    <div className="boxContainer" key={n} onClick={(event) => this.cardChangeEvent(sub, food.foodCategoryId, tree.subFoodCategoryId, food.foodCategoryName, tree.subFoodCategoryName)}>
                                                         <div className='col-md-3 col-sm-12' >
                                                             <div className="paid-candidate-container mrg-10 random" >
 
