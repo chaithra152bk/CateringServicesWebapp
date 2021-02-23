@@ -25,8 +25,8 @@ class CutomForm1 extends React.Component {
             pinCode: null,
             eventType: eventData.eventType[0].eventTypeId || null,
             eventName: eventData.eventType[0].eventName || '',
-            subEventType: null,
-            subEventName: ''
+            subEventType: 8 || null,
+            subEventName: "Wedding" || ''
         };
         this.eventFilterArray = eventData.eventType[0]
         this.indoptions = eventData.eventType
@@ -90,10 +90,11 @@ class CutomForm1 extends React.Component {
     }
 
     handleChange = async (value) => {
+        console.log("ajajaja", value)
         if (value === 1) {
             this.setState({ eventArray: await eventData.eventType })
         } else {
-            this.setState({ eventArray: this.orgoptions })
+            this.setState({ eventArray: [] })
         }
 
         this.setState({ userType: value })
@@ -162,7 +163,7 @@ class CutomForm1 extends React.Component {
                                     <FormGroup controlId="formGridEmail">
                                         <span style={{ color: 'gray', fontWeight: 'bold' }}>
                                             <input type="radio" name="site_name" style={{ marginLeft: '-45px', marginTop: 10 }}
-                                                onChange={(e) => { this.handleChange(eventData.userId) }}
+                                                onChange={(e) => this.handleChange(1)} 
                                             />    Individual</span>
 
                                     </FormGroup>
@@ -172,7 +173,7 @@ class CutomForm1 extends React.Component {
                                     <FormGroup controlId="formGridEmail">
                                         <span style={{ color: 'gray', fontWeight: 'bold' }}>  <input type="radio" name="site_name" style={{ marginLeft: '-80px', marginTop: 10, color: 'black', fontWeight: 'bold' }}
 
-                                            onChange={(e) => { this.handleChange(eventData.userId) }}
+                                            onChange={(e) => this.handleChange(2) }
                                         />   Organization</span>
                                     </FormGroup>
                                 </Col>

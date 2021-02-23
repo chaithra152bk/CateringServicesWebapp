@@ -4,21 +4,21 @@
     "eventType": [
         {
             "eventTypeId": 3,
-            "eventName": "special events",
+            "eventName": "Special events",
             "subEventTypes": []
         },
         {
             "eventTypeId": 2,
-            "eventName": "social events",
+            "eventName": "Social events",
             "subEventTypes": [
                 {
                     "subEventId": 8,
-                    "subEventName": "wedding",
+                    "subEventName": "Wedding",
                     "foodCategories": []
                 },
                 {
                     "subEventId": 7,
-                    "subEventName": "birthday",
+                    "subEventName": "Birthday",
                     "foodCategories": [
                         {
                             "foodCategoryId": 1,
@@ -141,7 +141,7 @@
                 },
                 {
                     "subEventId": 9,
-                    "subEventName": "house warming",
+                    "subEventName": "House warming",
                     "foodCategories": [
                         {
                             "foodCategoryId": 1,
@@ -231,7 +231,7 @@
                 },
                 {
                     "subEventId": 10,
-                    "subEventName": "gathering",
+                    "subEventName": "Gathering",
                     "foodCategories": []
                 }
             ]

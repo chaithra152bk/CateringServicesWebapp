@@ -14,7 +14,6 @@ const toast = new Notification()
 class OrderPage extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             clientName: this.props.history.location.state.userName || '',
             error: null,
@@ -39,7 +38,9 @@ class OrderPage extends React.Component {
             eventStatus: false,
             categoryStatus: false,
             tickStatus: false,
-            dishName: ''
+            dishName: '',
+            quantity: null,
+            totalPrice: null
         }
         console.log("this.props.history.location.state0", this.props.history.location.state)
         this.modalRef = null;
@@ -157,7 +158,7 @@ class OrderPage extends React.Component {
         orderDetails['eventType'] = "Social Event";
         orderDetails['subEventType'] = "Birthday";
         orderDetails['items'] = this.orderList;
-        orderDetails['numberOfPeople'] = 12;
+        orderDetails['numberOfPeople'] = this.state.quantity;
         orderDetails['totalPrice'] = 1234;
         orderDetails['mobileNumber'] = this.props.history.location.state.contactNumber;
         orderDetails['emailId'] = this.props.history.location.state.email;
@@ -179,9 +180,16 @@ class OrderPage extends React.Component {
         }
 
     }
+
+    onchangeQuantity = (text) => {
+        this.setState({ quantity: text })
+        let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
+        this.setState({ totalPrice: sum * this.state.quantity })
+    }
     orderDetailPopup = (startDate) => {
         let Quantity = 12
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
+
         return (
             <div style={{ margin: "20px" }}>
                 <div className="jobDetail-container-popupView">
@@ -197,7 +205,8 @@ class OrderPage extends React.Component {
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12">
                                 <div className="orderRightText">
-                                    No.of Persons:  {Quantity}
+                                    No.of Persons: 12
+                                    {/* <input type="number" name="quantity" style={{ width: '50%', height: '50%' }} onChange={(text) => this.onchangeQuantity(text)} /> */}
                                 </div>
                             </div>
 
@@ -209,7 +218,7 @@ class OrderPage extends React.Component {
                                 <div className="orderLeftText">Location: Bangalore</div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12" >
-                                <div className="contactText">Contact No.: 9606345827</div>
+                                <div className="contactText">Contact No.: {this.state.contactNumber}</div>
                             </div>
 
                             <hr />
@@ -246,6 +255,7 @@ class OrderPage extends React.Component {
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6" >
                                 <div className="contactText"> Total: {'Rs. '}{sum * Quantity} </div>
+
                             </div>
                         </div>
 
@@ -268,9 +278,21 @@ class OrderPage extends React.Component {
 
 
     render() {
-        let tabarray = this.props.DishesData.eventType[1];
-        let eventName = tabarray.subEventTypes[1].subEventName
-        let eventArray = tabarray.subEventTypes[1].foodCategories;
+       
+        let eve = this.props.DishesData.eventType
+        let eventId = this.props.history.location.state.eventType
+        let subEvent = this.props.history.location.state.subEventTypeId
+        let index = eve.findIndex((x) => x.eventTypeId == eventId)
+        let tabarray = this.props.DishesData.eventType[index];
+        let subEventIndex = tabarray.subEventTypes.findIndex((y)=> y.subEventId == subEvent)
+        let eventName = tabarray.subEventTypes[subEventIndex].subEventName
+
+        let eventArray = tabarray.subEventTypes[subEventIndex].foodCategories;
+
+        console.log("eventName", eventArray)
+
+
+
         let catering = null
         const data = this.props.history.location.state
 
@@ -284,7 +306,7 @@ class OrderPage extends React.Component {
                             <div>
                                 <h4 className="list-group-item list-group-item-success" style={{ fontWeight: 'bold', fontSize: '20px', color: 'black' }}>Food Categories</h4>
                                 {
-                                    eventArray.map((tab, index) => {
+                                  eventArray && eventArray.map((tab, index) => {
                                         // console.log("tab------", tab)
                                         return (
 
