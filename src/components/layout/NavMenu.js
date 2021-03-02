@@ -167,7 +167,7 @@ export default class NavMenu extends React.PureComponent {
 		return (
 			<React.Fragment>
 				<li>
-					<NavLink onClick={() => this.closeMenu()} to={'/orders'}><i className="fa fa-shopping-cart" aria-hidden="true"></i>{'Place an Order'}</NavLink>
+					<NavLink onClick={() => this.closeMenu()} to={''}><i className="" aria-hidden="true"></i>{''}</NavLink>
 				</li>
 				{/* <li className="right-nav-bar-items">
 					<img className="flag-navigation" alt={t('navigation.english_language')} title={t('navigation.english_language')} onClick={() => this.changeLanguage(constant.ENGLISH_LANGUAGE_CODE)} src={flag.england} />

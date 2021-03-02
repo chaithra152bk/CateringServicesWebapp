@@ -8,6 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Notification from '../common/notification/Notification';
 import constant from '../../shared/constant';
 import * as moment from "moment";
+import { Form, FormGroup, FormControl, ControlLabel, Checkbox, HelpBlock } from 'react-bootstrap';
+
 
 const toast = new Notification()
 
@@ -26,7 +28,7 @@ class OrderPage extends React.Component {
             DishId: null,
             tabs: this.props.DishesData.eventType[1],
             activeColor: false,
-            startDate: new Date(),
+            startDate: this.props.history.location.state.eventDate,
             eventActive: false,
             subFoodCategoryId: null,
             foodCategoryId: null,
@@ -42,7 +44,6 @@ class OrderPage extends React.Component {
             quantity: null,
             totalPrice: null
         }
-        console.log("this.props.history.location.state0", this.props.history.location.state)
         this.modalRef = null;
         this.confirmRef = null;
         this.handleTabClick = this.handleTabClick.bind(this);
@@ -69,13 +70,15 @@ class OrderPage extends React.Component {
         if (dishesList.length > 0) {
             console.log("")
         } else {
-            toast.show("their is no dishes for this food",
+            toast.show("No dishes for selected category, please contact administrator: test@test.com",
                 constant.error
             );
         }
     }
 
-
+    componentDidUpdate() {
+        // this.onchangeQuantity()
+    }
 
     handleTabClick(tab, index) {
         let newtab = tab.foodSubCategories
@@ -90,7 +93,7 @@ class OrderPage extends React.Component {
             console.log("");
         }
         else {
-            toast.show("their is no sub category found",
+            toast.show("No food category available,please contact administator: test@test.com",
                 constant.error
             );
         }
@@ -113,7 +116,7 @@ class OrderPage extends React.Component {
             console.log("");
         }
         else {
-            toast.show("their is no sub food category found",
+            toast.show("No food category available,please contact administator: test@test.com",
                 constant.error
             );
         }
@@ -181,11 +184,19 @@ class OrderPage extends React.Component {
 
     }
 
-    onchangeQuantity = (text) => {
-        this.setState({ quantity: text })
+    onchangeQuantity = async (event) => {
+
+        this.setState({ quantity: await event.target.value })
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
-        this.setState({ totalPrice: sum * this.state.quantity })
+    
+        let newValue = (2 * this.state.quantity)
+        this.setState({ totalPrice: await newValue })
+
+
     }
+
+
+
     orderDetailPopup = (startDate) => {
         let Quantity = 12
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
@@ -200,25 +211,38 @@ class OrderPage extends React.Component {
                     </div>
                     <div>
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
-                            <div className="col-md-6 col-sm-12 col-xs-12">
+                            <div className="col-md-12 col-sm-12 col-xs-12">
                                 <div className="orderLeftText">Date: {moment(startDate).format("D/M/YYYY hh:mm")}</div>
-                            </div>
-                            <div className="col-md-6 col-sm-12 col-xs-12">
-                                <div className="orderRightText">
-                                    No.of Persons: 12
-                                    {/* <input type="number" name="quantity" style={{ width: '50%', height: '50%' }} onChange={(text) => this.onchangeQuantity(text)} /> */}
-                                </div>
                             </div>
 
                             <hr />
                         </div>
+                        <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
+                            < div className="col-md-6 col-sm-12 col-xs-12">
+                                <div className="orderLeftText">
+                                    No.of Persons:
+
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12 col-xs-12">
+                                <FormControl name="quantity" placeholder="" type='number' onChange={(event) => this.onchangeQuantity(event)} />
+
+                                {/* <input type="number" name="quantity" className="orderRightText" style={{ width: '50%', height: '50%', margin: 5 }}
+                                 onChange={(event) => this.onchangeQuantity(event)} /> */}
+
+                            </div>
+
+
+                            <hr />
+                        </div>
+
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
 
                             <div className="col-md-6 col-sm-12 col-xs-12" >
                                 <div className="orderLeftText">Location: Bangalore</div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12" >
-                                <div className="contactText">Contact No.: {this.state.contactNumber}</div>
+                                <div className="contactText">Contact No.: {this.props.history.location.state.contactNumber}</div>
                             </div>
 
                             <hr />
@@ -254,7 +278,7 @@ class OrderPage extends React.Component {
                             <div className="col-md-6 col-sm-6 col-xs-6" >
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6" >
-                                <div className="contactText"> Total: {'Rs. '}{sum * Quantity} </div>
+                                <div className="contactText"> Total: {'Rs. '}{sum * this.state.quantity} </div>
 
                             </div>
                         </div>
@@ -278,23 +302,16 @@ class OrderPage extends React.Component {
 
 
     render() {
-       
+
         let eve = this.props.DishesData.eventType
         let eventId = this.props.history.location.state.eventType
         let subEvent = this.props.history.location.state.subEventTypeId
         let index = eve.findIndex((x) => x.eventTypeId == eventId)
         let tabarray = this.props.DishesData.eventType[index];
-        let subEventIndex = tabarray.subEventTypes.findIndex((y)=> y.subEventId == subEvent)
+        let subEventIndex = tabarray.subEventTypes.findIndex((y) => y.subEventId == subEvent)
         let eventName = tabarray.subEventTypes[subEventIndex].subEventName
 
         let eventArray = tabarray.subEventTypes[subEventIndex].foodCategories;
-
-        console.log("eventName", eventArray)
-
-
-
-        let catering = null
-        const data = this.props.history.location.state
 
         return (
 
@@ -306,7 +323,7 @@ class OrderPage extends React.Component {
                             <div>
                                 <h4 className="list-group-item list-group-item-success" style={{ fontWeight: 'bold', fontSize: '20px', color: 'black' }}>Food Categories</h4>
                                 {
-                                  eventArray && eventArray.map((tab, index) => {
+                                    eventArray && eventArray.map((tab, index) => {
                                         // console.log("tab------", tab)
                                         return (
 
@@ -339,12 +356,12 @@ class OrderPage extends React.Component {
                     <div className="row">
                         <div className="col-md-offset-2 col-md-2 col-md-offset-4 col-sm-8">
                             <div>
-                                <span className="subTextNew">Event Type: {eventName}</span>
+                                <span className="subTextNew">Event : {eventName}</span>
                             </div>
                         </div>
                         <div className=" col-md-2 col-sm-12">
                             <div>
-                                <span className="subTextNew">Location: Bangalore</span>
+                                <span className="subTextNew">Location: {this.props.history.location.state.eventAddress}</span>
                             </div>
                         </div>
                         <div className=" col-md-4 col-sm-12">
@@ -355,7 +372,7 @@ class OrderPage extends React.Component {
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={12}
-                                dateFormat="dd/MM/yyyy  HH:mm"
+                                dateFormat="dd/MM/yyyy  hh:mm a"
                             /></span>
                         </div>
                         <div>
@@ -388,7 +405,7 @@ class OrderPage extends React.Component {
                                                                             <img src={require(`../../assets/images/Foods/${sub.imageName}`)} className="random-img" alt="" />
                                                                         </div>
                                                                         <div className="paid-candidate-box-detail">
-                                                                            <h4>{sub.dishName}</h4>
+                                                                            <h4 style={{ textTransform: "capitalize" }}>{sub.dishName}</h4>
                                                                             <span className="desination"></span>
                                                                         </div>
                                                                     </div>

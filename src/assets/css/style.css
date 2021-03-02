@@ -136,6 +136,9 @@ Fonts
 .popUpContainer{
   margin: 0 19px 0 19px !important;
 }
+.react-datepicker__input-container{
+  width: 243%;
+}
 .labelContainer{
   white-space: nowrap;
   margin-left: -5px !important;
