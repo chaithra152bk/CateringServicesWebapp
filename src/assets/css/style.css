@@ -133,6 +133,11 @@ Fonts
 @import url("https://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700");
 
 /*---------- Loader -----------*/
+
+.modal-header .close{
+  margin-top: 5px !important;
+  color: white !important;
+}
 .popUpContainer{
   margin: 0 19px 0 19px !important;
 }
@@ -150,8 +155,8 @@ Fonts
 
 section.eventContainer{
   /* height: 50px !important;  */
-  padding:  25px 0 25px 0 !important;
-  border-bottom:  1px solid black;
+  padding:  35px 0 20px 0 !important;
+  border-bottom:  1px solid lightgray;
 }
 @media only screen and (max-width: 992px) {
   .labelContainer{
@@ -183,10 +188,10 @@ section.eventContainer{
 .orderHeader {
   font-size: 25px;
   font-weight: bold;
-  color: black;
+  color: white !important;
 }
 .orderLeftText {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   color: black;
 }
@@ -198,6 +203,7 @@ section.eventContainer{
   font-size: 15px;
   font-weight: bold;
   color: black;
+  text-transform: capitalize;
 }
 .orderTableRightText {
   float: right;
@@ -228,7 +234,7 @@ section.eventContainer{
 .contactText {
   float: right;
   margin-right: -5px !important;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   color: black;
 }
@@ -300,7 +306,7 @@ section.eventContainer{
   cursor: pointer;
 }
 .lineContainer hr {
-  border: "0.5px solid black" !important;
+  border: 0.5px lightgray !important;
   margin-bottom: 2 !important;
   margin-top: 2 !important;
 }
@@ -346,10 +352,11 @@ section.eventContainer{
   min-height: 50%;
   min-width: 50%;
   color: yellow;
+
 }
 .bg-text {
   color: lightgrey;
-  font-size: 120px;
+  font-size: 80px;
   transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
 }
@@ -415,7 +422,7 @@ section.eventContainer{
   width: 222px;
   z-index: 4;
   padding-bottom: 30px;
-  padding-top: 4.8em;
+  padding-top: 5.8em;
 }
 
 #watermark {
@@ -547,9 +554,9 @@ p {
   transition: 0.2s ease-in;
 }
 hr {
-  border: 0.5px solid grey;
-  margin-bottom: 2px;
-  margin-top: 2px;
+  border: 0.5px solid lightgray;
+  margin-bottom: 6px;
+  margin-top: 6px;
 }
 
 ::selection {
@@ -2144,6 +2151,7 @@ a.bg-danger:hover {
   min-width: 150px;
   text-transform: capitalize;
   border-radius: 10px;
+  font-size: 16px !important;
 }
 
 .btn-danger:active,
@@ -2202,6 +2210,7 @@ a.bg-danger:hover {
   text-transform: capitalize;
   min-width: 150px;
   border-radius: 10px;
+  font-size: 16px !important;
 }
 
 .btn-success:active,
@@ -2712,7 +2721,7 @@ span.new-offer {
     margin-bottom: 3em !important;
   }
   nav.navbar.navbar-default.false.navbar-fixed.white.bootsnav {
-    height: 60px !important;
+    height: 90px !important;
   }
   nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-scrolled,
   nav.navbar.bootsnav.navbar-fixed.no-background .logo-scrolled {
@@ -11663,7 +11672,7 @@ section.full-detail.full-details-container-education {
     padding-top: 7em !important;
   }
   nav.navbar.navbar-default.false.navbar-fixed.white.bootsnav {
-    height: 60px !important;
+    height: 90px !important;
   }
   button.job-detail-buttons.view {
     margin-left: 0px !important;
@@ -11819,7 +11828,6 @@ section.full-detail.full-details-container-education {
     box-shadow: 0px 0px 12px 1px rgba(22, 140, 96, 0.4);
     color: #ffffff;
     font-size: 16px;
-    text-transform: uppercase;
     /* margin: 10px auto; */
     display: table-row-group;
     /* align-items: start; */
@@ -14180,7 +14188,7 @@ nav.navbar.bootsnav.navbar-fixed.no-background .logo-scrolled {
   margin-left: -25px !important;
 }
 nav.navbar.navbar-default.false.navbar-fixed.white.bootsnav {
-  height: 80px;
+  height: 90px !important;
 }
 section.advance-search {
   padding: 70px 0 0 0 !important;

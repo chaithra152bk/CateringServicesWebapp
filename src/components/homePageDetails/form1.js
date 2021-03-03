@@ -33,14 +33,14 @@ class CutomForm1 extends React.Component {
         };
         this.eventFilterArray = eventData.eventType[0]
         this.indoptions = eventData.eventType
-        this.error=''
+        this.error = ''
         // const focusing = index === lastSubmittedIndex + 1 ? true : false;
         this.setInputFocus = this.setInputFocus.bind(this);
     }
 
-componentDidUpdate(){
-    // this.getValidationState()
-}
+    componentDidUpdate() {
+        // this.getValidationState()
+    }
 
     eventTypeChange = (event) => {
         let eventId = event.target.value
@@ -73,19 +73,21 @@ componentDidUpdate(){
         })
     }
 
-    onUserNameChange = async(event) => {
+    onUserNameChange = async (event) => {
         this.setState({ userName: await event.target.value })
     }
 
-    onEmailChange = (event) => {
+    onEmailChange = async(event) => {
         this.setState({ email: event.target.value })
-        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; 
-        if(this.state.email.match(pattern)){
-            this.error='' 
-         }else{
-             this.error= 'email id should be gag@gmail.com format'
-         }
- 
+        const pattern = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        const isValid = event.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        console.log("isValid", isValid, event.target.value );
+        if (isValid) {
+            this.error = ''
+        } else {
+            this.error = 'email id should be gag@gmail.com format'
+        }
+
     }
 
     onContactNumberChange = (event) => {
@@ -95,7 +97,7 @@ componentDidUpdate(){
     }
 
     onEventAddressChange = (event) => {
-       
+
 
         this.setState({ eventAddress: event.target.value })
     }
@@ -121,21 +123,22 @@ componentDidUpdate(){
 
     getValidationState = () => {
         let length = this.state.contactNumber ? this.state.contactNumber.length : null
-        if (length === 10) {
-            this.setState({ errorHelp: '' })
-        }
-
-        else {
+        if (length <= 10) {
             this.setState({ errorHelp: 'number should be 10 didgits' })
 
         }
-      
+
+        else {
+            this.setState({ errorHelp: '' })
+
+        }
+
     }
 
     setInputFocus() {
         this.myInputRef.focus();
     }
-    
+
 
     render() {
         const params = { data: { fname: 'john', lname: 'doe' } };
@@ -154,13 +157,13 @@ componentDidUpdate(){
                                     Name:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl     ref={c => (this.myInputRef = c)}
+                                    <FormControl ref={c => (this.myInputRef = c)}
 
-                                                                required={true} name="clientname" placeholder="Client Name" type="text" onChange={(event) => this.onUserNameChange(event)}
+                                        required={true} name="clientname" placeholder="Client Name" type="text" onChange={(event) => this.onUserNameChange(event)}
 
                                     />
                                 </Col>
-                                {this.state.errormsg ? <div style={{color:'red', fontSize:15, marginLeft:'115px'}}>{this.state.errormsg}</div>: null}
+                                {this.state.errormsg ? <div style={{ color: 'red', fontSize: 15, marginLeft: '115px' }}>{this.state.errormsg}</div> : null}
                             </FormGroup>
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
@@ -169,7 +172,7 @@ componentDidUpdate(){
                                 <Col sm={10}>
                                     <FormControl name="clientemail" required={true} placeholder="asd@gmail.com" type="email" onChange={(event) => this.onEmailChange(event)} />
                                 </Col>
-                                {this.error ? <div style={{color:'red', fontSize:15, marginLeft:'115px'}}>{this.error}</div>: null}
+                                {this.error ? <div style={{ color: 'red', fontSize: 15, marginLeft: '115px' }}>{this.error}</div> : null}
 
                             </FormGroup>
                             <FormGroup controlId="formHorizontalPhone"  >
@@ -177,14 +180,14 @@ componentDidUpdate(){
                                     Phone:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl type="number"   size={10} name="clientphone"  placeholder="Client Phone Number" />
-                                      {/* onChange={(event) => this.onContactNumberChange(event)} /> */}
+                                    <FormControl maxLength={10} name="clientphone" placeholder="Client Phone Number"
+                                        onChange={(event) => this.onContactNumberChange(event)} />
                                 </Col>
-                                {this.state.errorHelp ? <div style={{color:'red', fontSize:15, marginLeft:'115px'}}>{this.state.errorHelp}</div>: null}
+                                {this.state.errorHelp ? <div style={{ color: 'red', fontSize: 15, marginLeft: '115px' }}>{this.state.errorHelp}</div> : null}
 
                             </FormGroup>
 
-                            
+
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} md={2}  >
                                     <span className="oldlabelContainer">Event Address:</span></Col>
@@ -197,18 +200,18 @@ componentDidUpdate(){
                                     <span className="oldlabelContainer">Event Date:</span>
                                 </Col>
                                 <Col sm="10">
-                                <DatePicker
-                                style={{width:"250%"}}
-                                className="form-control"
-                                value={this.state.eventDate}
-                                selected={this.state.eventDate}
-                                onChange={(date) => this.onEventDateChange(date)}
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={12}
-                                dateFormat="dd/MM/yyyy  HH:mm a"
-                            />                          
-                            </Col>  </FormGroup>
+                                    <DatePicker
+                                        style={{ width: "250%" }}
+                                        className="form-control"
+                                        value={this.state.eventDate}
+                                        selected={this.state.eventDate}
+                                        onChange={(date) => this.onEventDateChange(date)}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={12}
+                                        dateFormat="dd/MM/yyyy  HH:mm a"
+                                    />
+                                </Col>  </FormGroup>
                             <FormGroup controlId="formHorizontalEmail" style={{ marginTop: '-10px', marginBottom: '1px' }}>
                                 <Col componentClass={ControlLabel} md={4} style={{ marginLeft: '-27px' }}>
                                     <span style={{ paddingRight: '80px' }}>User Type: </span>

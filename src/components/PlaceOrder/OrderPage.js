@@ -131,11 +131,12 @@ class OrderPage extends React.Component {
             value['subFoodCategoryName'] = subFoodCategoryName;
             value['foodCategoryId'] = foodCategoryId;
             value['subFoodCategoryId'] = subFoodCategoryId;
+            let index = this.orderList.findIndex(x => x.dishId == value.dishId)
             if (this.orderList.findIndex(x => x.dishId == value.dishId) == -1) {
                 this.orderList.push(await value)
                 this.setState({ selectActive: true })
             } else {
-                this.orderList.pop(await value)
+                this.orderList.splice(index, 1)
                 this.setState({ selectActive: false })
             }
         }
@@ -188,10 +189,10 @@ class OrderPage extends React.Component {
 
         this.setState({ quantity: await event.target.value })
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
-    
+
         let newValue = (2 * this.state.quantity)
         this.setState({ totalPrice: await newValue })
-
+        console.log("bbbabssbs", this.state.totalPrice)
 
     }
 
@@ -204,7 +205,7 @@ class OrderPage extends React.Component {
         return (
             <div style={{ margin: "20px" }}>
                 <div className="jobDetail-container-popupView">
-                    <div className="row" style={{ backgroundColor: 'lightgray', padding: '20px', marginBottom: 20, marginTop: 10, marginRight: '-19px', marginLeft: '-19px' }}>
+                    <div className="row" style={{ backgroundColor: '#35434e', padding: '22px', marginBottom: 20, marginTop: 10, marginRight: '-20px', marginLeft: '-20px' }}>
                         <div className="col-md-offset-4 col-md-8 col-xs-12" >
                             <div className="orderHeader">Order Details</div>
                         </div>
@@ -266,7 +267,8 @@ class OrderPage extends React.Component {
                                                 <div className="orderTableLeftText">{value.dishName}</div>
                                             </div>
                                             <div className="col-md-6 col-sm-6 col-xs-6" >
-                                                <div className="orderTableRightText"> {'Rs. '}{value.price}</div>
+                                                <div className="orderTableRightText"> <span>
+                                                    {'Rs. '} </span>{value.price} </div>
                                             </div>
                                         </div>
                                     </div>
@@ -427,7 +429,7 @@ class OrderPage extends React.Component {
 
                         </div> : <div className="full-detail">
                             <div className="background">
-                                <p className="bg-text">Select Food </p>
+                                <p className="bg-text">Select Desired Food Category </p>
 
                             </div>
                         </div>
