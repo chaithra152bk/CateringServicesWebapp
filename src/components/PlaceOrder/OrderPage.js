@@ -28,7 +28,7 @@ class OrderPage extends React.Component {
             DishId: null,
             tabs: this.props.DishesData.eventType[1],
             activeColor: false,
-            startDate: this.props.history.location.state.eventDate,
+            startDate: this.props.history.location.state.eventDate || new Date(),
             eventActive: false,
             subFoodCategoryId: null,
             foodCategoryId: null,
@@ -42,8 +42,10 @@ class OrderPage extends React.Component {
             tickStatus: false,
             dishName: '',
             quantity: null,
-            totalPrice: null
+            totalPrice: 1
         }
+
+        console.log("ajjjjjjjjjjjjjjj", this.props.history.location.state)
         this.modalRef = null;
         this.confirmRef = null;
         this.handleTabClick = this.handleTabClick.bind(this);
@@ -147,8 +149,8 @@ class OrderPage extends React.Component {
 
     orderSubmit = () => {
         this.modalRef.props.onHide({
-            body: this.orderDetailPopup(this.state.startDate),
-            header: '',
+            body: this.orderDetailPopup(),
+            header: ''
         })
     }
 
@@ -190,17 +192,18 @@ class OrderPage extends React.Component {
         this.setState({ quantity: await event.target.value })
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
 
-        let newValue = (2 * this.state.quantity)
-        this.setState({ totalPrice: await newValue })
-        console.log("bbbabssbs", this.state.totalPrice)
+        let newValue = 2 * this.state.quantity
 
+        this.setState({ totalPrice: await newValue })
+        console.log("sum * this.state.quantity",this.state.totalPrice)
+
+        this.orderDetailPopup() 
+        // this.orderDetailPopup(this.state.totalPrice)
     }
 
 
 
-    orderDetailPopup = (startDate) => {
-        let Quantity = 12
-        let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
+    orderDetailPopup = () => {
 
         return (
             <div style={{ margin: "20px" }}>
@@ -211,9 +214,10 @@ class OrderPage extends React.Component {
                         </div>
                     </div>
                     <div>
+                       
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                <div className="orderLeftText">Date: {moment(startDate).format("D/M/YYYY hh:mm")}</div>
+                                <div className="orderLeftText">Date: {moment(this.state.startDate).format("D/M/YYYY hh:mm")}</div>
                             </div>
 
                             <hr />
@@ -226,7 +230,8 @@ class OrderPage extends React.Component {
                                 </div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <FormControl name="quantity" placeholder="" type='number' onChange={(event) => this.onchangeQuantity(event)} />
+                                <input name="quantity" placeholder="enetr number" type="number"  value={this.state.quantity}
+                                    onChange={(event) => this.onchangeQuantity(event)} />
 
                                 {/* <input type="number" name="quantity" className="orderRightText" style={{ width: '50%', height: '50%', margin: 5 }}
                                  onChange={(event) => this.onchangeQuantity(event)} /> */}
@@ -280,7 +285,7 @@ class OrderPage extends React.Component {
                             <div className="col-md-6 col-sm-6 col-xs-6" >
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-6" >
-                                <div className="contactText"> Total: {'Rs. '}{sum * this.state.quantity} </div>
+                                <div className="contactText"> Total: {this.state.totalPrice} </div>
 
                             </div>
                         </div>
@@ -446,8 +451,8 @@ class OrderPage extends React.Component {
                         </div>
                         : null}
 
-                    <CommonModal ref={(ref) => this.modalRef = ref} />
-                    <CommonModal ref={(ref) => this.confirmRef = ref} />
+                    <CommonModal ref={(ref) => this.modalRef = ref}  total={this.state.totalPrice} {...this.props}/>
+                    <CommonModal ref={(ref) => this.confirmRef = ref} total={this.state.totalPrice}  {...this.props}/>
                 </div>
 
 

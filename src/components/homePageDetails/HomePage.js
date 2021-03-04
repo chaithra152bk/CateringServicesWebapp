@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import constant from "../../shared/constant";
 import { Button } from '../common/button/Button';
 import CutomForm1 from './form1';
-
+import Footer from '../layout/Footer';
 
 
 
@@ -26,6 +26,7 @@ class HomePage extends React.Component {
 		return (
 			<div className="clearfix">
 				<CutomForm1  {...this.props} />
+				<Footer />
 			</div>
 		)
 	}

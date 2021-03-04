@@ -67,9 +67,9 @@ export default (props) => {
                 {pathname != constant.HOME_PAGE && pathname != '/login' ? <NavMenu {...props} openSideMenu={openSideMenuCallback} updateWindowWidth={(v) => setWindowWidth(v)} pathname={pathname} role={role} /> : <NavMenu {...props} />}
                 {/* {pathname != constant.HOME_PAGE &&  pathname != '/login' && !sideMenu ? <Sidebar {...props} routes={Routes} role={role} onLinkPress={onLinkPressCallback} onOperationButtonPress={onOperationButtonPressCallback} /> : <NavMenu {...props} /> } */}
                 <div className="container-height">
-                    <div className={`${pathname != constant.HOME_PAGE && pathname != '/login' && !sideMenu ? 'main-panel' : ''}`}>
+                    <div className={`${pathname != constant.HOME_PAGE && pathname != '/orders' && !sideMenu ? 'main-panel' : ''}`}>
                         {props.children}
-                       {/* <Footer {...props} /> */}
+                       <Footer {...props} />
                     </div>
                 </div>
                 {role && <CommonModal ref={(ref) => modalRef = ref} />}

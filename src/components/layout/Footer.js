@@ -10,7 +10,7 @@ export default class Footer extends React.PureComponent {
 			
 			<div className="row copyright">
 				<div className="container">
-					<p>{t('footer.copy_right')}</p>
+					{/* <p>{t('footer.copy_right')}</p> */}
 				</div>
 			</div>
 		</footer>

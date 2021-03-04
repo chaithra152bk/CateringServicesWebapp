@@ -77,12 +77,16 @@ class CutomForm1 extends React.Component {
         this.setState({ userName: await event.target.value })
     }
 
-    onEmailChange = async(event) => {
-        this.setState({ email: event.target.value })
-        const pattern = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-        const isValid = event.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        console.log("isValid", isValid, event.target.value );
-        if (isValid) {
+    onEmailChange = async (event) => {
+        this.setState({ email: await event.target.value })
+        // const pattern = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        // const isValid = event.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+        const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
+
+        if (pattern.test(this.state.email)) {
+
+
             this.error = ''
         } else {
             this.error = 'email id should be gag@gmail.com format'
@@ -90,9 +94,20 @@ class CutomForm1 extends React.Component {
 
     }
 
-    onContactNumberChange = (event) => {
-        this.setState({ contactNumber: event.target.value })
-        this.getValidationState()
+    onContactNumberChange = async (event) => {
+        this.setState({ contactNumber: await event.target.value })
+        let length = this.state.contactNumber ? this.state.contactNumber.length : null
+        console.log("lemgt", length)
+        if (length < 10) {
+            this.setState({ errorHelp: 'number should be 10 didgits' })
+
+        }
+
+        else {
+            this.setState({ errorHelp: '' })
+
+        }
+        // this.getValidationState()
 
     }
 
@@ -102,8 +117,14 @@ class CutomForm1 extends React.Component {
         this.setState({ eventAddress: event.target.value })
     }
 
-    onEventDateChange = (date) => {
-        this.setState({ eventDate: date })
+    onEventDateChange = async(date) => {
+        if(date > new Date()){
+            this.setState({ eventDate: await date })
+
+        }
+        else{
+            alert('anajjjjjjjjj')
+        }
     }
 
     onPincodeChange = (event) => {
@@ -111,7 +132,6 @@ class CutomForm1 extends React.Component {
     }
 
     handleChange = async (value) => {
-        console.log("ajajaja", value)
         if (value === 1) {
             this.setState({ eventArray: await eventData.eventType })
         } else {
@@ -122,16 +142,7 @@ class CutomForm1 extends React.Component {
     }
 
     getValidationState = () => {
-        let length = this.state.contactNumber ? this.state.contactNumber.length : null
-        if (length <= 10) {
-            this.setState({ errorHelp: 'number should be 10 didgits' })
 
-        }
-
-        else {
-            this.setState({ errorHelp: '' })
-
-        }
 
     }
 
@@ -273,7 +284,20 @@ class CutomForm1 extends React.Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup>
-                                <NavLink bsStyle="success" type="submit" className='btn btn-success'
+                                <Button bsStyle="success" type="submit" className='btn btn-success' style={{ marginLeft: '165px', borderRadius: '10px' }}
+                                disabled={this.state.userName === '' ? true: false}
+                                onClick={() => this.props.history.push({
+                                    pathname: '/orders',
+                                    state: {
+                                        userName: this.state.userName, contactNumber: this.state.contactNumber, email: this.state.email,
+                                        eventAddress: this.state.eventAddress, eventDate: this.state.eventDate, userType: this.state.userType,
+                                        eventType: this.state.eventType, eventName: this.state.eventName, subEventTypeId: this.state.subEventType,
+                                        subEventName: this.state.subEventName, pinCode: this.state.pinCode
+                                    }
+                                  } )}>
+                                    proceed to order
+                                </Button>
+                                {/* <NavLink bsStyle="success" type="submit" className='btn btn-success'
                                     style={{ marginLeft: '165px', borderRadius: '10px' }}
                                     to={{
                                         pathname: '/orders', state: {
@@ -285,11 +309,22 @@ class CutomForm1 extends React.Component {
                                     }}
                                 >
                                     Proceed to Place Order
-        </NavLink>
+        </NavLink> */}
                             </FormGroup>
                         </Form>
                     </Col>
                 </Row>
+                <footer className="footer fixed-bottom">
+			
+			<div className="row copyright">
+				<div className="container">
+
+                    Lakshya hospitality
+					{/* <p>{t('footer.copy_right')}</p> */}
+				</div>
+			</div>
+		</footer>
+
             </div >
 
         );
