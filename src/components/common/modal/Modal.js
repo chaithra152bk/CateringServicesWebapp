@@ -14,7 +14,7 @@ const CommonModal = React.forwardRef((props, ref) => {
                 setOpen(modalData.isModalOpen)
             }
             else{
-                setOpen(!open);
+                setOpen(true);
             }
         }
         else{
@@ -33,7 +33,7 @@ const CommonModal = React.forwardRef((props, ref) => {
             backdrop={'static'}
             className={modalData&&modalData.modalType}
         >
-            <Modal.Header closeButton>
+            <Modal.Header >
             {modalData&&modalData.header}
                 <Modal.Title id="contained-modal-title-lg">
                 </Modal.Title>

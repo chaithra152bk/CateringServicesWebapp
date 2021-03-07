@@ -79,41 +79,13 @@ class CutomForm1 extends React.Component {
 
     onEmailChange = async (event) => {
         this.setState({ email: await event.target.value })
-        // const pattern = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-        // const isValid = event.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
-        const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
-
-        if (pattern.test(this.state.email)) {
-
-
-            this.error = ''
-        } else {
-            this.error = 'email id should be gag@gmail.com format'
-        }
-
     }
 
     onContactNumberChange = async (event) => {
         this.setState({ contactNumber: await event.target.value })
-        let length = this.state.contactNumber ? this.state.contactNumber.length : null
-        console.log("lemgt", length)
-        if (length < 10) {
-            this.setState({ errorHelp: 'number should be 10 didgits' })
-
-        }
-
-        else {
-            this.setState({ errorHelp: '' })
-
-        }
-        // this.getValidationState()
-
     }
 
     onEventAddressChange = (event) => {
-
-
         this.setState({ eventAddress: event.target.value })
     }
 
@@ -168,14 +140,15 @@ class CutomForm1 extends React.Component {
                                     Name:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl ref={c => (this.myInputRef = c)}
-
+                                    <FormControl 
                                         required={true} name="clientname" placeholder="Client Name" type="text" onChange={(event) => this.onUserNameChange(event)}
 
                                     />
                                 </Col>
                                 {this.state.errormsg ? <div style={{ color: 'red', fontSize: 15, marginLeft: '115px' }}>{this.state.errormsg}</div> : null}
                             </FormGroup>
+
+                            
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
                                     Email:
@@ -191,7 +164,7 @@ class CutomForm1 extends React.Component {
                                     Phone:
     </Col>
                                 <Col sm={10}>
-                                    <FormControl maxLength={10} name="clientphone" placeholder="Client Phone Number"
+                                    <input maxLength={10} type="number" name="clientphone" placeholder="Client Phone Number"
                                         onChange={(event) => this.onContactNumberChange(event)} />
                                 </Col>
                                 {this.state.errorHelp ? <div style={{ color: 'red', fontSize: 15, marginLeft: '115px' }}>{this.state.errorHelp}</div> : null}
@@ -265,7 +238,7 @@ class CutomForm1 extends React.Component {
 
                             <FormGroup as={Row} controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={2}>
-                                    <span style={{ whiteSpace: 'nowrap', marginLeft: '-50px' }}>SubEvent Type:</span>
+                                    <div style={{ whiteSpace: 'nowrap', marginLeft: '-35px' }}>SubEvent Type:</div>
                                 </Col>
                                 <Col sm="10">
                                     <FormControl componentClass="select" placeholder="select" onChange={(event) => this.subEventTypeChange(event)}>
@@ -314,16 +287,15 @@ class CutomForm1 extends React.Component {
                         </Form>
                     </Col>
                 </Row>
-                <footer className="footer fixed-bottom">
+                {/* <footer className="footer fixed-bottom">
 			
 			<div className="row copyright">
 				<div className="container">
 
                     Lakshya hospitality
-					{/* <p>{t('footer.copy_right')}</p> */}
 				</div>
 			</div>
-		</footer>
+		</footer> */}
 
             </div >
 

@@ -134,6 +134,24 @@ Fonts
 
 /*---------- Loader -----------*/
 
+.leftHalf {
+  background: url('../../assets/images/buffet.jpg');
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .modal-header .close{
   margin-top: 5px !important;
   color: white !important;
@@ -142,7 +160,7 @@ Fonts
   margin: 0 19px 0 19px !important;
 }
 .react-datepicker__input-container{
-  width: 243%;
+  width: 207%;
 }
 .labelContainer{
   white-space: nowrap;
@@ -150,12 +168,12 @@ Fonts
 }
 .oldlabelContainer{
   white-space: nowrap;
-  margin-left: -45px !important;
+  margin-left: -25px !important;
 }
 
 section.eventContainer{
   /* height: 50px !important;  */
-  padding:  35px 0 20px 0 !important;
+  padding:  120px 0 20px 0 !important;
   border-bottom:  1px solid lightgray;
 }
 @media only screen and (max-width: 992px) {
@@ -233,7 +251,7 @@ section.eventContainer{
 }
 .contactText {
   float: right;
-  margin-right: -5px !important;
+  margin-right: -15px !important;
   font-size: 17px;
   font-weight: bold;
   color: black;
@@ -4870,7 +4888,7 @@ button.btn.btn-default.btn-xs.dropdown-toggle i {
   .signup-screen,
   .lost-ps-screen {
     position: relative;
-    max-width: 450px;
+    max-width: 540px;
     margin: 6.1% auto 0 auto !important;
   }
   .simple-bg-screen.success-and-failure-screen {
@@ -6740,6 +6758,7 @@ a.subs-popup {
 
 button.close {
   -webkit-appearance: none;
+  color: white;
   position: absolute;
   right: 10px;
   top: 10px;
@@ -6753,7 +6772,7 @@ button.close {
 
 .close:hover,
 .close:focus {
-  color: #168c60;
+  color: white;
   text-decoration: none;
   cursor: pointer;
   filter: alpha(opacity=50);
@@ -7337,7 +7356,7 @@ body.simple-bg-screen:before {
 .signup-screen,
 .lost-ps-screen {
   position: relative;
-  max-width: 450px;
+  max-width: 540px;
   margin: 6.1% auto 0 auto;
 }
 .simple-bg-screen.success-and-failure-screen {
@@ -11530,7 +11549,7 @@ p.text-tranform {
 /* Home page new styles */
 
 .bl-darken {
-  background-image: url("../images/recruitershomeimage.jpg");
+  background-image: url("../../assets/images/buffet.jpg");
   background-size: cover !important;
   background-repeat: no-repeat !important;
   /* background-position: center; */
@@ -11538,7 +11557,7 @@ p.text-tranform {
   /* background-color: rgba(255, 255, 255, 0.3); */
   /* filter: opacity(80%); */
   /* filter: opacity(80%); */
-  height: 720px;
+  height: 790px;
 }
 
 section.home-to-act {
@@ -11855,7 +11874,7 @@ section.full-detail.full-details-container-education {
   .signup-screen,
   .lost-ps-screen {
     position: relative;
-    max-width: 450px;
+    max-width: 540px !important;
     margin: 0 auto 0 auto;
   }
   .simple-bg-screen {
@@ -12447,7 +12466,7 @@ h2.homeHeading {
   .signup-screen,
   .lost-ps-screen {
     position: relative;
-    max-width: 450px;
+    max-width: 540px !important;
     margin: 6.1% auto 0 auto !important;
   }
   .simple-bg-screen.success-and-failure-screen {

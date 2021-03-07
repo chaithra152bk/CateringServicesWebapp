@@ -52,6 +52,7 @@ class OrderPage extends React.Component {
         this.handleCategoryClick = this.handleCategoryClick.bind(this);
         this.orderSubmit = this.orderSubmit.bind(this)
         this.orderList = [];
+        this.eventName=""
     }
 
     handleChange = (date) => {
@@ -155,17 +156,17 @@ class OrderPage extends React.Component {
     }
 
     confirmOrderChange = () => {
-        this.modalRef.props.onHide();
+        this.modalRef.props.onHide(false);
         let orderDetails = {};
         orderDetails['eventDate'] = this.state.startDate;
-        orderDetails['eventLocation'] = "Bangalore";
+        orderDetails['eventLocation'] = this.props.history.location.state.eventAddress;
         orderDetails['pinCode'] = this.props.history.location.state.pinCode;
         orderDetails['name'] = this.props.history.location.state.userName;
-        orderDetails['eventType'] = "Social Event";
-        orderDetails['subEventType'] = "Birthday";
+        orderDetails['eventType'] = this.props.history.location.state.eventName;
+        orderDetails['subEventType'] = this.props.history.location.state.subEventName;
         orderDetails['items'] = this.orderList;
         orderDetails['numberOfPeople'] = this.state.quantity;
-        orderDetails['totalPrice'] = 1234;
+        orderDetails['totalPrice'] = this.state.totalPrice;
         orderDetails['mobileNumber'] = this.props.history.location.state.contactNumber;
         orderDetails['emailId'] = this.props.history.location.state.email;
         orderDetails['address'] = this.props.history.location.state.eventAddress;
@@ -192,12 +193,20 @@ class OrderPage extends React.Component {
         this.setState({ quantity: await event.target.value })
         let sum = this.orderList.map(o => o.price).reduce((a, c) => { return a + c });
 
-        let newValue = 2 * this.state.quantity
+        let newValue = sum * this.state.quantity
 
         this.setState({ totalPrice: await newValue })
-        console.log("sum * this.state.quantity",this.state.totalPrice)
+        console.log("sum * this.state.quantity", sum * this.state.totalPrice)
 
-        this.orderDetailPopup() 
+
+        // this.orderDetailPopup()
+        // console.log("this.price", this.state.totalPrice)
+        // this.orderSubmit()
+        this.modalRef.props.onHide({
+            body: this.orderDetailPopup(),
+            header: ''
+        })
+
         // this.orderDetailPopup(this.state.totalPrice)
     }
 
@@ -211,10 +220,14 @@ class OrderPage extends React.Component {
                     <div className="row" style={{ backgroundColor: '#35434e', padding: '22px', marginBottom: 20, marginTop: 10, marginRight: '-20px', marginLeft: '-20px' }}>
                         <div className="col-md-offset-4 col-md-8 col-xs-12" >
                             <div className="orderHeader">Order Details</div>
+
                         </div>
+
                     </div>
+                    <button className="close" onClick={() => this.modalRef.props.onHide()
+                    }><i className="fa fa-close"></i></button>
                     <div>
-                       
+
                         <div className="row" style={{ marginLeft: '5px', marginRight: '5px' }}>
                             <div className="col-md-12 col-sm-12 col-xs-12">
                                 <div className="orderLeftText">Date: {moment(this.state.startDate).format("D/M/YYYY hh:mm")}</div>
@@ -230,15 +243,11 @@ class OrderPage extends React.Component {
                                 </div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <input name="quantity" placeholder="enetr number" type="number"  value={this.state.quantity}
+                                <input name="quantity" placeholder="Enter Number" style={{ marginLeft: '23px', marginBottom: '5px',
+                                 border: "1px solid black", color:'black', fontWeight:'bold' }}
+                                    type="number" value={this.state.quantity}
                                     onChange={(event) => this.onchangeQuantity(event)} />
-
-                                {/* <input type="number" name="quantity" className="orderRightText" style={{ width: '50%', height: '50%', margin: 5 }}
-                                 onChange={(event) => this.onchangeQuantity(event)} /> */}
-
                             </div>
-
-
                             <hr />
                         </div>
 
@@ -248,7 +257,7 @@ class OrderPage extends React.Component {
                                 <div className="orderLeftText">Location: Bangalore</div>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12" >
-                                <div className="contactText">Contact No.: {this.props.history.location.state.contactNumber}</div>
+                                <div className="contactText">Contact No: {this.props.history.location.state.contactNumber}</div>
                             </div>
 
                             <hr />
@@ -317,7 +326,7 @@ class OrderPage extends React.Component {
         let tabarray = this.props.DishesData.eventType[index];
         let subEventIndex = tabarray.subEventTypes.findIndex((y) => y.subEventId == subEvent)
         let eventName = tabarray.subEventTypes[subEventIndex].subEventName
-
+        this.eventName= eventName
         let eventArray = tabarray.subEventTypes[subEventIndex].foodCategories;
 
         return (
@@ -451,8 +460,8 @@ class OrderPage extends React.Component {
                         </div>
                         : null}
 
-                    <CommonModal ref={(ref) => this.modalRef = ref}  total={this.state.totalPrice} {...this.props}/>
-                    <CommonModal ref={(ref) => this.confirmRef = ref} total={this.state.totalPrice}  {...this.props}/>
+                    <CommonModal ref={(ref) => this.modalRef = ref} total={this.state.totalPrice} {...this.props} />
+                    <CommonModal ref={(ref) => this.confirmRef = ref} total={this.state.totalPrice}  {...this.props} />
                 </div>
 
 

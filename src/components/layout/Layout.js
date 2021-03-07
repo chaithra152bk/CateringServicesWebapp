@@ -69,7 +69,7 @@ export default (props) => {
                 <div className="container-height">
                     <div className={`${pathname != constant.HOME_PAGE && pathname != '/orders' && !sideMenu ? 'main-panel' : ''}`}>
                         {props.children}
-                       <Footer {...props} />
+                       {/* <Footer {...props} /> */}
                     </div>
                 </div>
                 {role && <CommonModal ref={(ref) => modalRef = ref} />}
